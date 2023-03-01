@@ -1,0 +1,9 @@
+numpy==1.19.5
+pandas==1.1.5
+Pillow==8.4.0
+pypng==0.20220715.0
+PyQRCode==1.2.1
+python-dateutil==2.8.2
+pytz==2022.7.1
+six==1.16.0
+unicodedata2==15.0.0
