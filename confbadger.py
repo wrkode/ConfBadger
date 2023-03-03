@@ -9,7 +9,7 @@ from PIL import Image, ImageFile, ImageFont, ImageDraw
 
 dataFile = "data.csv"
 save_path  = './codes'
-
+template = "KCDAMS2023_Badge_Template.png"
 
 font = ImageFont.truetype("fonts/OpenSans-Bold.ttf", 140)
 font2 = ImageFont.truetype("fonts/OpenSans-Regular.ttf", 70)
@@ -83,21 +83,21 @@ END:VCARD'''
         qrcode.png(f"{save_path}/{lastname}_{firstname}_{order}.png", scale="4")
 
         ImageFile.LOAD_TRUNCATED_IMAGES = True
-        img1 = Image.open("KCDAMS2023_Badge_Template.png").convert("RGB")
+        img_base = Image.open(template).convert("RGB")
           
         # Opening the secondary image (overlay image)
-        img2 = Image.open(f"{save_path}/{lastname}_{firstname}_{order}.png").convert("RGB")
+        img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order}.png").convert("RGB")
           
         # Pasting img2 image on top of img1 
         # starting at coordinates (70, 1300)
-        img1.paste(img2, (70, 1300))
+        img_base.paste(img_qcode, (70, 1300))
         #flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
-        img3 = Image.open(f"flags/{landcode}.png").convert("RGB")
-        img1.paste(img3, (850, 1100))  
+        img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
+        img_base.paste(img_flag, (850, 1100))  
         
         upperName = firstname.upper()
 
-        draw = ImageDraw.Draw(img1)
+        draw = ImageDraw.Draw(img_base)
         draw.text((100,400), f"{upperName}",(207,19,19),font=font)
         draw.text((100,600), f"{lastname}",(0,0,0),font=font2)
         draw.text((50,1050), f"{title}",(207,19,19),font=font2)
@@ -122,5 +122,5 @@ END:VCARD'''
                 draw.line((0,1750, 1230,1750), (247,106,5), width=220)
                 draw.text((270,1610), "ATTENDEE", (255,255,255), font=font)
 
-        img1.save(f"badges/{lastname}_{firstname}_{order}.png")
+        img_base.save(f"badges/{lastname}_{firstname}_{order}.png")
 createBadge()
