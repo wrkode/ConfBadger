@@ -8,6 +8,7 @@ The Flags of the attendee are retrieved from https://countryflagsapi.com/. I hav
 ## Install Required Modules
 
 while in the directory of the project. run the following to install all required modules:
+
 ```pip3 install -r requirements.txt```
 
 ## Update your variables
