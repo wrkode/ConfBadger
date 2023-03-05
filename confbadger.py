@@ -2,6 +2,7 @@ import pyqrcode
 import pandas as pd
 import numpy as np
 import png
+import urllib.request
 import unicodedata
 from PIL import Image, ImageFile, ImageFont, ImageDraw
 
@@ -88,10 +89,11 @@ END:VCARD'''
         # Opening the secondary image (overlay image)
         img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order}.png").convert("RGB")
           
-        # Pasting img2 image on top of img1 
+        # Pasting qrcode image on top of teamplate image 
         # starting at coordinates (70, 1300)
         img_base.paste(img_qcode, (70, 1300))
-        #flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
+        
+        flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
         img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
         img_base.paste(img_flag, (850, 1100))  
         
@@ -122,5 +124,5 @@ END:VCARD'''
                 draw.line((0,1750, 1230,1750), (247,106,5), width=220)
                 draw.text((270,1610), "ATTENDEE", (255,255,255), font=font)
 
-        img_base.save(f"badges/{lastname}_{firstname}_{order}.png")
+        img_base.save(f"badges/{lastname}_{firstname}_{order}.pdf")
 createBadge()
