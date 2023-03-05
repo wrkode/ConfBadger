@@ -8,15 +8,16 @@ from PIL import Image, ImageFile, ImageFont, ImageDraw
 
 
 
-dataFile = "data.csv"
+dataFile   = "data.csv"
 save_path  = './codes'
-template = "KCDAMS2023_Badge_Template.png"
+template   = "KCDAMS2023_Badge_Template.png"
+addFlag    = False
 
 font = ImageFont.truetype("fonts/OpenSans-Bold.ttf", 140)
 font2 = ImageFont.truetype("fonts/OpenSans-Regular.ttf", 70)
 font3 = ImageFont.truetype("fonts/OpenSans-Semibold.ttf", 80)
 
-
+## Attendees Types
 speaker   = "100.00% - KCDNL2023SPKR"
 organizer = "100.00% - KCDAMS23_ORGANIZERS_42"
 vip       = ["100.00% - KCDAMS23-WILLIAMFRIENDS",
@@ -78,7 +79,7 @@ GEO:{country}
 VERSION:3.0
 END:VCARD'''
 
-        flag = "https://countryflagsapi.com/png/"+landcode
+        ## flag = "https://countryflagsapi.com/png/"+landcode
 
         qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
         qrcode.png(f"{save_path}/{lastname}_{firstname}_{order}.png", scale="4")
@@ -93,9 +94,11 @@ END:VCARD'''
         # starting at coordinates (70, 1300)
         img_base.paste(img_qcode, (70, 1300))
         
-        flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
-        img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
-        img_base.paste(img_flag, (850, 1100))  
+        if addFlag == True:
+            flag = "https://countryflagsapi.com/png/"+landcode
+            flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
+            img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
+            img_base.paste(img_flag, (850, 1100))  
         
         upperName = firstname.upper()
 
