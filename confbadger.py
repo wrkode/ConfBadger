@@ -79,8 +79,6 @@ GEO:{country}
 VERSION:3.0
 END:VCARD'''
 
-        ## flag = "https://countryflagsapi.com/png/"+landcode
-
         qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
         qrcode.png(f"{save_path}/{lastname}_{firstname}_{order}.png", scale="4")
 
