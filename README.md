@@ -1,9 +1,10 @@
 # ConfBadger
 
-This simple program, creates conference badges given a CSV file with the appropriate column headers (please see example).
-In the badge, details of the attendee such as first name, last name, job title and company will be printed, along with a QRCode containing a VCARD. 
+This simple program creates conference badges given a CSV file with the appropriate column headers (please see example).
+In the badge, details of the attendee such as first name, last name, job title and company will be printed, along with a QRCode containing a VCARD.
+
 A flag with the attendee country will be added as well. To remove this, simpy assign ```false``` to the ```addFlag``` variable.
-The Flags of the attendee are retrieved from https://countryflagsapi.com/. I have noticed that with a poor connection, the whole script might fail.
+The Flags of the attendee are retrieved from https://countryflagsapi.com/. I have noticed that with a poor connection, the whole script might cascade-fail trying to retrieve the flags. If you encounter this proble, just disable the flag retrieval.
 
 ## Install Required Modules
 
@@ -18,15 +19,15 @@ while in the directory of the project. run the following to install all required
 
 ## Fonts
 
-To change the TrueType font used, update ```font```, ```font2``` and ```font``` varible to point to your font path.
+To change the TrueType font used, update ```font```, ```font2``` and ```font3``` varible to point to your font path.
 
-* ```font``` - used for First Name
+* ```font```  - used for First Name
 * ```font2``` - used for Last Name and Job Title
 * ```font3``` - Used for Company Name
 
 ## Attendees Types
 
-The Colour and Text at the bottom of the badge, is updated according to the attendee ```discount```. Update the follwoing varialble values to your needs:
+The Colour and Text at the bottom of the badge, is updated according to the attendee ```Discount``` tier. Update the follwoing varialble values to your needs:
 
 * ```speaker```
 * ```organizer```
@@ -36,7 +37,7 @@ The Colour and Text at the bottom of the badge, is updated according to the atte
 
 ## Flags
 
-* ```addFlag``` - Used to enable/disable flage retrieval and addition.
+* ```addFlag``` - Used to enable/disable flag retrieval and addition.
 
 ## Badge Format
 
@@ -58,5 +59,3 @@ you can run confBadger by:
 * Add Auto adjustment of text size and position
 * Add option to remove source images
 * Add code for base image drawing
-
-
