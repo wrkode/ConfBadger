@@ -48,3 +48,15 @@ The badge will be created as PDF. You can swtch the format to png by updating th
 you can run confBadger by:
 
 ```python3 confbadger.py```
+
+* The badges will be created in the ```badges/``` directory.
+* The QRCodes will be created in the ```codes/``` directory.
+* If enabled, the flags will be created in the ```flags/``` directory.
+
+## TODO
+
+* Add Auto adjustment of text size and position
+* Add option to remove source images
+* Add code for base image drawing
+
+
