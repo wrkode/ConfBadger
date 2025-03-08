@@ -1,5 +1,6 @@
-numpy==1.19.5
-pandas==1.1.5
+#numpy==1.19.5
+numpy==2.2.3
+pandas==2.2.3
 Pillow==8.4.0
 pypng==0.20220715.0
 PyQRCode==1.2.1
