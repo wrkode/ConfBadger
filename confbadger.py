@@ -57,8 +57,9 @@ def main():
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
 
     df = pd.read_csv(data_file)
-    df.fillna('', inplace=True)
-    
+#    df.fillna('', inplace=True)
+    df.iloc[:, 0] = df.iloc[:, 0].fillna(0)  # First column (position 0) filled with 0
+    df.iloc[:, 1:] = df.iloc[:, 1:].fillna('')  # All other columns filled with ''    
 
     for index, values in df.iterrows():
         order     = values["Order #"]
