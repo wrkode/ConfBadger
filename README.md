@@ -12,34 +12,31 @@ while in the directory of the project. run the following to install all required
 
 ```pip3 install -r requirements.txt```
 
-## Update your variables
+## Usage
 
-* ```dataFile``` - CSV file containing your attendees.
-* ```template``` - Your base image file for the badge. Use ```KCDAMS2023_Badge_Template.png``` for sizing reference.
+```python3 confbadger.py```
 
-## Fonts
 
-To change the TrueType font used, update ```font```, ```font2``` and ```font3``` varible to point to your font path.
+## Update your configuration
+
+Configuration is stored in a yaml file, which is config.yaml by default.
+
+### Attendee types
+
+Create one list item in `attendee-types` for each attendee type. Each list item should have a `name` which will be
+printed to the badge and a `ticket-titles` which is a list of ticket types from the data file.  
+
+## Customize the code 
+### Fonts
+
+To change the TrueType font used you need to update the source code, update ```font```, ```font2``` and ```font3```
+varible to point to your font path.
 
 * ```font```  - used for First Name
 * ```font2``` - used for Last Name and Job Title
 * ```font3``` - Used for Company Name
 
-## Attendees Types
-
-The Colour and Text at the bottom of the badge, is updated according to the attendee ```Discount``` tier. Update the follwoing varialble values to your needs:
-
-* ```speaker```
-* ```organizer```
-* ```vip```
-* ```student```
-* ```sponsor```
-
-## Flags
-
-* ```addFlag``` - Used to enable/disable flag retrieval and addition.
-
-## Badge Format
+### Badge Format
 
 The badge will be created as PDF. You can swtch the format to png by updating the extension in this function:
 ```img_base.save(f"badges/{lastname}_{firstname}_{order}.pdf")```
@@ -50,9 +47,21 @@ you can run confBadger by:
 
 ```python3 confbadger.py```
 
-* The badges will be created in the ```badges/``` directory.
-* The QRCodes will be created in the ```codes/``` directory.
+* By default the badges will be created in the ```badges/``` directory.
+* By default the QRCodes will be created in the ```codes/``` directory.
 * If enabled, the flags will be created in the ```flags/``` directory.
+
+### Command line options
+
+ -h, --help            show this help message and exit
+  --data DATA           List of attendees in the CSV formar as exported from Bevy. Default is data.csv
+  --save-path SAVE_PATH
+                        Path to save the generated badges. Default is ./codes
+  --template TEMPLATE   Template for the badges. Default is the example KCDAMS2023_Badge_Template.png file
+  --flags               Adds flags to the badges. False by default.
+  --config CONFIG       Config file. Default is config.yaml.
+  --debug               Print debug logs.
+
 
 ## TODO
 
