@@ -21,10 +21,10 @@ def main():
     logger = logging.getLogger(__name__)
     sys.stdout.reconfigure(encoding='utf-8')
 
-    parser = argparse.ArgumentParser(description='Mass handling GitHub repos.')
+    parser = argparse.ArgumentParser(description='Generating conference badges.')
 
     parser.add_argument('--data', default="data.csv",
-                            help='List of attendees in the CSV formar as exported from Bevy. Default is data.csv')
+                            help='List of attendees in the CSV format as exported from Bevy. Default is data.csv')
     parser.add_argument('--save-path', default="./codes",
                             help='Path to save the generated badges. Default is ./codes')
     parser.add_argument('--template', default="KCDAMS2023_Badge_Template.png",
