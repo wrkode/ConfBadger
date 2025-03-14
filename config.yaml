@@ -1,0 +1,46 @@
+---
+
+attendee-types:
+  - name: "Speaker"
+    ticket-titles:
+      - "100.00% - KCDNL2023SPKR"
+  - name: "Sponsor"
+    ticket-titles:
+      - "100.00% - KCDAMS23_MULTILAYER_FREE_RRTFS"
+      - "100.00% - KCDAMS23_AVISI_FREE_YUHTG"
+      - "100.00% - KCDAMS23_CIRCLECI_FREE_UIGHT"
+      - "100.00% - KCDAMS23_BUOYANT_FREE_AAXDC"
+      - "100.00% - KCDAMS23_ELASTIC_FREE_IJUHY"
+      - "100.00% - KCDAMS23_ATCOMP_FREE_RRTFS"
+      - "100.00% - KCDAMS23_FULLSTAQ_FREE_ASDCX"
+      - "100.00% - KCDAMS23_AKNOSTIC_FREE_UHYGJ"
+      - "100.00% - KCDAMS23_FIKAWORKS_FREE_YGVHS"
+      - "100.00% - KCDAMS23_ING_FREE_ASDCX"
+      - "100.00% - KCDAMS23_REDKUBES_FREE_VGBSD"
+      - "100.00% - KCDAMS23_FERMYON_FREE_GYHUT"
+      - "100.00% - KCDAMS23_DOIT_FREE_TYGGHF"
+      - "100.00% - KCDAMS23_RABO_FREE_BHNJK"
+      - "100.00% - KCDAMS23_A1_FREE_ASDCX"
+      - "100.00% - KCDAMS23_SPECTROCLOUD_FREE_GTCFS"
+      - "100.00% - KCDAMS23_SUSE_FREE_JJHGT"
+      - "100.00% - KCDAMS23_MIA_FREE_GYHUT"
+      - "100.00% - KCDAMS23_HCS_FREE_RRTFS"
+      - "100.00% - KCDAMS23_SOLO.IO_FREE_ASDCX"
+      - "100.00% - KCDAMS23_APPVIA_FREE_TYYGH"
+      - "100.00% - KCDAMS23_EDB_FREE_JAESR"
+      - "100.00% - KCDAMS23_EDGELESS_FREE_HUGYF"
+
+  - name: "Organizer"
+    ticket-titles:
+      - "100.00% - KCDAMS23_ORGANIZERS_42"
+  - name: "Vip"
+    ticket-titles:
+      - "100.00% - KCDAMS23-WILLIAMFRIENDS"
+      - "100.00% - KCDAMS_LOVES_DODAMS"
+      - "100.00% - KCDAMS23-ANDYFRIENDS"
+  - name: "Student"
+    ticket-titles:
+      - "75.00% - STUDENTKCD75"
+      - "100.00% - KCDAMS_LOVES_DODAMS"
+      - "100.00% - KCDAMS23_CODAMFRIENDS"
+
