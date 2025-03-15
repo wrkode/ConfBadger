@@ -55,7 +55,9 @@ def createBadge():
     df = pd.read_csv(dataFile)
     df.fillna('', inplace=True)
     
-
+    # Convert Order # to string and remove decimal places
+    df["Order #"] = df["Order #"].astype(str).apply(lambda x: x.split('.')[0])
+    
     for index, values in df.iterrows():
         order     = values["Order #"]
         firstname = values["First Name"]
