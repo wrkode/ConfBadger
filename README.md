@@ -1,61 +1,124 @@
-# ConfBadger
+# Conference Badge Generator
 
-This simple program creates conference badges given a CSV file with the appropriate column headers (please see example).
-In the badge, details of the attendee such as first name, last name, job title and company will be printed, along with a QRCode containing a VCARD.
+A web application for generating and managing conference badges from CSV data. The application allows you to upload attendee data, generate badges with QR codes, and search through attendees.
 
-A flag with the attendee country will be added as well. To remove this, simpy assign ```false``` to the ```addFlag``` variable.
-The Flags of the attendee are retrieved from https://countryflagsapi.com/. I have noticed that with a poor connection, the whole script might cascade-fail trying to retrieve the flags. If you encounter this proble, just disable the flag retrieval.
+## Features
 
-## Install Required Modules
+- Upload CSV files with attendee information
+- Generate badges with QR codes containing attendee details
+- Search attendees by name, title, company, or ticket type
+- Preview and download individual badges
+- Real-time search with instant results
+- Modern, responsive user interface
 
-while in the directory of the project. run the following to install all required modules:
+## Prerequisites
 
-```pip3 install -r requirements.txt```
+- Python 3.7 or higher
+- Node.js 14 or higher
+- npm (Node Package Manager)
 
-## Update your variables
+## Installation
 
-* ```dataFile``` - CSV file containing your attendees.
-* ```template``` - Your base image file for the badge. Use ```KCDAMS2023_Badge_Template.png``` for sizing reference.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd ConfBadger
+```
 
-## Fonts
+2. Install Python dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-To change the TrueType font used, update ```font```, ```font2``` and ```font3``` varible to point to your font path.
+3. Install Node.js dependencies:
+```bash
+cd frontend
+npm install
+```
 
-* ```font```  - used for First Name
-* ```font2``` - used for Last Name and Job Title
-* ```font3``` - Used for Company Name
+## Running the Application
 
-## Attendees Types
+1. Start the FastAPI backend (from the root directory):
+```bash
+python app.py
+```
+The backend will be available at http://localhost:8000
 
-The Colour and Text at the bottom of the badge, is updated according to the attendee ```Discount``` tier. Update the follwoing varialble values to your needs:
+2. Start the React frontend (from the frontend directory):
+```bash
+cd frontend
+npm start
+```
+The frontend will be available at http://localhost:3000
 
-* ```speaker```
-* ```organizer```
-* ```vip```
-* ```student```
-* ```sponsor```
+## CSV File Format
 
-## Flags
+The application expects a CSV file with the following columns:
+- Order #
+- First Name
+- Last Name
+- Email
+- Phone Number
+- Country
+- Country Code
+- Job Title
+- Company
+- Discount
 
-* ```addFlag``` - Used to enable/disable flag retrieval and addition.
+Example CSV format:
+```csv
+Order #,First Name,Last Name,Email,Phone Number,Country,Country Code,Job Title,Company,Discount
+1,John,Doe,john@example.com,+1234567890,Netherlands,NL,Software Engineer,Example Corp,100.00% - KCDAMS23_ORGANIZERS_42
+```
 
-## Badge Format
+## Usage
 
-The badge will be created as PDF. You can swtch the format to png by updating the extension in this function:
-```img_base.save(f"badges/{lastname}_{firstname}_{order}.pdf")```
+1. **Upload CSV File**
+   - Click the "Upload CSV File" button
+   - Select your CSV file with attendee information
+   - The system will validate the file and generate badges
 
-## Run ConfBadger
+2. **Search Attendees**
+   - Use the search fields to filter attendees by:
+     - Name (searches in both first and last name)
+     - Title
+     - Company
+     - Ticket Type
+   - Results update automatically as you type
+   - Clear individual fields using the X button
+   - Reset all filters using the "Clear Search" button
 
-you can run confBadger by:
+3. **Preview and Download Badges**
+   - Each attendee card shows basic information
+   - Use the "Preview Badge" button to view the badge in a new tab
+   - Use the "Download" button to download the badge
 
-```python3 confbadger.py```
+## Project Structure
 
-* The badges will be created in the ```badges/``` directory.
-* The QRCodes will be created in the ```codes/``` directory.
-* If enabled, the flags will be created in the ```flags/``` directory.
+```
+ConfBadger/
+├── app.py                 # FastAPI backend
+├── confbadger.py          # Badge generation logic
+├── requirements.txt       # Python dependencies
+├── data.csv              # Sample CSV file
+├── KCDAMS2023_Badge_Template.png  # Badge template
+├── frontend/             # React frontend
+│   ├── package.json
+│   ├── public/
+│   └── src/
+├── badges/              # Generated badges
+├── codes/               # Generated QR codes
+├── fonts/               # Font files
+└── flags/               # Country flag images
+```
 
-## TODO
+## Development
 
-* Add Auto adjustment of text size and position
-* Add option to remove source images
-* Add code for base image drawing
+- Backend: FastAPI (Python)
+- Frontend: React with Material-UI
+- Badge Generation: PIL (Python Imaging Library)
+- QR Code Generation: PyQRCode
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
