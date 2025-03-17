@@ -44,23 +44,36 @@ def main():
     data_file   = args.data
     save_path  = args.save_path
     template   = args.template
-    addFlag    = args.flags
+    add_flag    = args.flags
     config_file = args.config
 
     logger.debug(f"Data file is {data_file}")
     logger.debug(f"Save path file is {save_path}")
     logger.debug(f"Template is {template}")
-    logger.debug(f"Add flag is {str(addFlag)}")
+    logger.debug(f"Add flag is {str(add_flag)}")
     logger.debug(f"Config file is {config_file}")
+
+    createBadge(template, save_path, add_flag, data_file, config_file)
+
+def createBadge(template = "KCDAMS2023_Badge_Template.png",
+                save_path = "badges",
+                add_flag = False,
+                data_file = "data.csv",
+                config_file = "config.yaml" ):
+    
+    logger = logging.getLogger(__name__)
+    logger.debug(f"teplate: {template}, save_path: {save_path}, add_flag: {str(add_flag)}, data_file: {data_file}, config_file: {config_file}")
 
     with open(config_file, 'r') as f:
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
 
     df = pd.read_csv(data_file)
-#    df.fillna('', inplace=True)
     df.iloc[:, 0] = df.iloc[:, 0].fillna(0)  # First column (position 0) filled with 0
     df.iloc[:, 1:] = df.iloc[:, 1:].fillna('')  # All other columns filled with ''    
-
+    
+    # Convert Order # to string and remove decimal places
+    df["Order #"] = df["Order #"].astype(str).apply(lambda x: x.split('.')[0])
+    
     for index, values in df.iterrows():
         order     = values["Order #"]
         firstname = values["First Name"]
@@ -97,7 +110,7 @@ END:VCARD'''
         # starting at coordinates (70, 1300)
         img_base.paste(img_qcode, (70, 1300))
         
-        if addFlag == True:
+        if add_flag == True:
             flag = "https://countryflagsapi.com/png/"+landcode
             flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
             img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
