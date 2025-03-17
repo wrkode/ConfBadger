@@ -1,6 +1,7 @@
 # Conference Badge Generator
 
-A web application for generating and managing conference badges from CSV data. The application allows you to upload attendee data, generate badges with QR codes, and search through attendees.
+A web application for generating and managing conference badges from CSV data. The application allows you to upload
+ attendee data, generate badges with QR codes, and search through attendees.
 
 ## Features
 
@@ -35,6 +36,23 @@ pip install -r requirements.txt
 cd frontend
 npm install
 ```
+
+## Configuration
+
+### Config file
+
+Configuration is stored in a yaml file, which is config.yaml by default.
+
+#### Attendee types
+
+Create one list item in `attendee-types` for each attendee type. Each list item should have a `name` which will be
+printed to the badge and a `ticket-titles` which is a list of ticket types from the data file.  
+
+### Customize the code 
+#### Fonts
+
+To change the TrueType font used you need to update the source code, update ```font```, ```font2``` and ```font3```
+varible to point to your font path.
 
 ## Running the Application
 
@@ -93,6 +111,18 @@ Order #,First Name,Last Name,Email,Phone Number,Country,Country Code,Job Title,C
    - Use the "Preview Badge" button to view the badge in a new tab
    - Use the "Download" button to download the badge
 
+## Command line option
+
+It is possible to generate the badges using `python3 confbadger.py`. Command line options in this case:
+
+ -h, --help            show this help message and exit
+  --data DATA           List of attendees in the CSV format as exported from Bevy. Default is data.csv
+  --save-path SAVE_PATH
+                        Path to save the generated badges. Default is ./codes
+  --template TEMPLATE   Template for the badges. Default is the example KCDAMS2023_Badge_Template.png file
+  --flags               Adds flags to the badges. False by default.
+  --config CONFIG       Config file. Default is config.yaml.
+
 ## Project Structure
 
 ```
@@ -100,16 +130,16 @@ ConfBadger/
 ├── app.py                 # FastAPI backend
 ├── confbadger.py          # Badge generation logic
 ├── requirements.txt       # Python dependencies
-├── data.csv              # Sample CSV file
+├── data.csv               # Sample CSV file
 ├── KCDAMS2023_Badge_Template.png  # Badge template
-├── frontend/             # React frontend
+├── frontend/              # React frontend
 │   ├── package.json
 │   ├── public/
 │   └── src/
-├── badges/              # Generated badges
-├── codes/               # Generated QR codes
-├── fonts/               # Font files
-└── flags/               # Country flag images
+├── badges/                # Generated badges
+├── codes/                 # Generated QR codes
+├── fonts/                 # Font files
+└── flags/                 # Country flag images
 ```
 
 ## Development
