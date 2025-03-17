@@ -22,7 +22,7 @@ A web application for generating and managing conference badges from CSV data. T
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/wrkode/ConfBadger.git
 cd ConfBadger
 ```
 
@@ -56,9 +56,21 @@ varible to point to your font path.
 
 ## Running the Application
 
+You can start both the backend and frontend servers in one of two ways:
+
+### Option 1: Using the startup script (Recommended)
+From the root directory, simply run:
+```bash
+./start.sh
+```
+This will start both the backend (http://localhost:8000) and frontend (http://localhost:3000) servers concurrently.
+
+### Option 2: Manual startup
+If you prefer to start the servers manually:
+
 1. Start the FastAPI backend (from the root directory):
 ```bash
-python app.py
+python3 app.py
 ```
 The backend will be available at http://localhost:8000
 
@@ -111,17 +123,18 @@ Order #,First Name,Last Name,Email,Phone Number,Country,Country Code,Job Title,C
    - Use the "Preview Badge" button to view the badge in a new tab
    - Use the "Download" button to download the badge
 
-## Command line option
+## Command line options
 
 It is possible to generate the badges using `python3 confbadger.py`. Command line options in this case:
 
- -h, --help            show this help message and exit
-  --data DATA           List of attendees in the CSV format as exported from Bevy. Default is data.csv
-  --save-path SAVE_PATH
-                        Path to save the generated badges. Default is ./codes
-  --template TEMPLATE   Template for the badges. Default is the example KCDAMS2023_Badge_Template.png file
-  --flags               Adds flags to the badges. False by default.
-  --config CONFIG       Config file. Default is config.yaml.
+```
+-h, --help            show this help message and exit
+--data DATA           List of attendees in the CSV format as exported from Bevy. Default is data.csv
+--save-path SAVE_PATH Path to save the generated badges. Default is ./codes
+--template TEMPLATE   Template for the badges. Default is the example KCDAMS2023_Badge_Template.png file
+--flags               Adds flags to the badges. False by default.
+--config CONFIG       Config file. Default is config.yaml.
+```
 
 ## Project Structure
 
