@@ -83,22 +83,33 @@ The frontend will be available at http://localhost:3000
 
 ## CSV File Format
 
-The application expects a CSV file with the following columns:
-- Order #
+The application expects a CSV file downloaded from Bevy with the following columns:
+- Order number
+- Ticket number
 - First Name
 - Last Name
 - Email
-- Phone Number
-- Country
-- Country Code
-- Job Title
+- Twitter
 - Company
+- Title
+- Featured
+- Ticket title
+- Ticket venue
+- Access code
 - Discount
+- Price
+- Currency
+- Number of tickets
+- Paid by (name)
+- Paid by (email)
+- Paid date (UTC)
+- Checkin Date (UTC)
+- Ticket Price Paid
 
 Example CSV format:
 ```csv
-Order #,First Name,Last Name,Email,Phone Number,Country,Country Code,Job Title,Company,Discount
-1,John,Doe,john@example.com,+1234567890,Netherlands,NL,Software Engineer,Example Corp,100.00% - KCDAMS23_ORGANIZERS_42
+Order number,Ticket number,First Name,Last Name,Email,Twitter,Company,Title,Featured,Ticket title,Ticket venue,Access code,Discount,Price,Currency,Number of tickets,Paid by (name),Paid by (email),Paid date (UTC),Checkin Date (UTC),Ticket Price Paid
+CNCFE12345678,CNCFA23456789,Name,Ofaperson,email.ofsomeone@working.here,,,,,Early Bird,In-person,,,45.00,EUR,1,Name Ofaperson,email.ofsomeone@working.here,2025-01-20 15:09:24+00:00,,45.00
 ```
 
 ## Usage

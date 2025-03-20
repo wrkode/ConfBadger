@@ -29,8 +29,6 @@ def main():
                             help='Path to save the generated badges. Default is ./codes')
     parser.add_argument('--template', default="KCDAMS2023_Badge_Template.png",
                             help='Template for the badges. Default is the example KCDAMS2023_Badge_Template.png file')
-    parser.add_argument('--flags', action="store_true",
-                            help='Adds flags to the badges. False by default.')
     parser.add_argument('--config', default="config.yaml",
                             help='Config file. Default is config.yaml.')
     parser.add_argument('--debug', action="store_true",
@@ -44,77 +42,71 @@ def main():
     data_file   = args.data
     save_path  = args.save_path
     template   = args.template
-    add_flag    = args.flags
     config_file = args.config
 
     logger.debug(f"Data file is {data_file}")
     logger.debug(f"Save path file is {save_path}")
     logger.debug(f"Template is {template}")
-    logger.debug(f"Add flag is {str(add_flag)}")
     logger.debug(f"Config file is {config_file}")
 
-    createBadge(template, save_path, add_flag, data_file, config_file)
+    createBadge(template, save_path, data_file, config_file)
 
 def createBadge(template = "KCDAMS2023_Badge_Template.png",
                 save_path = "badges",
-                add_flag = False,
                 data_file = "data.csv",
                 config_file = "config.yaml" ):
     
     logger = logging.getLogger(__name__)
-    logger.debug(f"teplate: {template}, save_path: {save_path}, add_flag: {str(add_flag)}, data_file: {data_file}, config_file: {config_file}")
+    logger.debug(f"teplate: {template}, save_path: {save_path}, data_file: {data_file}, config_file: {config_file}")
 
     with open(config_file, 'r') as f:
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
 
-    df = pd.read_csv(data_file)
-    df.iloc[:, 0] = df.iloc[:, 0].fillna(0)  # First column (position 0) filled with 0
-    df.iloc[:, 1:] = df.iloc[:, 1:].fillna('')  # All other columns filled with ''    
-    
-    # Convert Order # to string and remove decimal places
-    df["Order #"] = df["Order #"].astype(str).apply(lambda x: x.split('.')[0])
+    df = read_data_file(data_file)
     
     for index, values in df.iterrows():
-        order     = values["Order #"]
-        firstname = values["First Name"]
-        lastname  = values["Last Name"]
-        email     = values["Email"]
-        phone     = values["Phone Number"]
-        country   = values["Country"]
-        landcode  = values["Country Code"]
-        title     = values["Job Title"]
-        org       = values["Company"]
-        promo     = values["Discount"]
+        order_number            = values["Order number"]        
+        ticket_number           = values["Ticket number"]
+        firstname               = values["First Name"]
+        lastname                = values["Last Name"]
+        email                   = values["Email"]
+        twitter                 = values["Twitter"]
+        company                 = values["Company"]
+        title                   = values["Title"]
+        featured                = values["Featured"]
+        ticket_title            = values["Ticket title"]
+        ticket_venue            = values["Ticket venue"]
+        access_code             = values["Access code"]
+        price                   = values["Price"]
+        currency                = values["Currency"]
+        number_of_tickets       = values["Number of tickets"]
+        paid_by_name            = values["Paid by (name)"]
+        paid_by_email           = values["Paid by (email)"]
+        paid_date               = values["Paid date (UTC)"]
+        checkin_date            = values["Checkin Date (UTC)"]
+        ticket_price_paid       = values["Ticket Price Paid"]
 
         data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
 FN:{lastname}+{firstname}
 TITLE:{title}
-TEL;TYPE=work,VOICE:{phone}
 EMAIL;WORK;INTERNET:{email}
-ORG:{org}
-GEO:{country}
+ORG:{company}
 VERSION:3.0
 END:VCARD'''
 
         qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
-        qrcode.png(f"{save_path}/{lastname}_{firstname}_{order}.png", scale="4")
+        qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale="4")
 
         ImageFile.LOAD_TRUNCATED_IMAGES = True
         img_base = Image.open(template).convert("RGB")
           
         # Opening the secondary image (overlay image)
-        img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order}.png").convert("RGB")
+        img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order_number}.png").convert("RGB")
           
         # Pasting qrcode image on top of teamplate image 
         # starting at coordinates (70, 1300)
         img_base.paste(img_qcode, (70, 1300))
-        
-        if add_flag == True:
-            flag = "https://countryflagsapi.com/png/"+landcode
-            flag = urllib.request.urlretrieve(flag, f"flags/{landcode}.png")
-            img_flag = Image.open(f"flags/{landcode}.png").convert("RGB")
-            img_base.paste(img_flag, (850, 1100))  
         
         upperName = firstname.upper()
 
@@ -122,17 +114,28 @@ END:VCARD'''
         draw.text((100,400), f"{upperName}",(207,19,19),font=font)
         draw.text((100,600), f"{lastname}",(0,0,0),font=font2)
         draw.text((50,1050), f"{title}",(207,19,19),font=font2)
-        draw.text((50,1150), f"{org}", (20,206,219),font=font3)
+        draw.text((50,1150), f"{company}", (20,206,219),font=font3)
 
         attendee_type = "ATTENDEE"
         for attendee in config_data["attendee-types"]:
-                if promo in attendee["ticket-titles"]:
+                if ticket_title in attendee["ticket-titles"]:
                         logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
                         attendee_type = attendee["name"].capitalize()
         draw.line((0,1750, 1230,1750), (247,106,5), width=220)
         draw.text((270,1610), attendee_type, (255,255,255), font=font)
 
-        img_base.save(f"badges/{lastname}_{firstname}_{order}.pdf")
+        img_base.save(f"badges/{lastname}_{firstname}_{order_number}.pdf")
+
+def read_data_file(csv_file):
+        df = pd.read_csv(csv_file)
+        # Filling empty places with proper things
+        df.iloc[:, 0:11] = df.iloc[:, 0:11].fillna('')
+        df.iloc[:, 12] = df.iloc[:, 12].fillna(0)
+        df.iloc[:, 13] = df.iloc[:, 13].fillna('')
+        df.iloc[:, 14] = df.iloc[:, 14].fillna(0)
+        df.iloc[:, 15:18] = df.iloc[:, 15:18].fillna('')
+        df.iloc[:, 19] = df.iloc[:, 19].fillna(0)
+        return df
 
 if __name__ == "__main__":
     main()

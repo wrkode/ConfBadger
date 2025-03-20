@@ -1,17 +1,167 @@
-Order #,First Name,Last Name,Job Title,Company,Email,Phone Number,Country,Country Code,Discount
-845602,John,Smith,Student,,j.smith@worlduni.com,555-4992345,Ireland,IRL,75.00% - STUDENTKCD75
-,Eve,Moneypenny,Researcher,Scotland Yard,e.moneypenny@syard.co.uk,555-4587,Scotland,scotland,100.00% - KCDAMS23-ANDYFRIENDS
-,Tom,Waits,Vocalist,Alice Co,tw@alice.you,555-75476,USA,US,100.00% - KCDAMS23_ORGANIZERS_42
-,William,Orbit,Technologist,Orbital,w.orbit@orbit.my,555-45098,United Kingdom,GB,100.00% - KCDAMS23_MULTILAYER_FREE_RRTFS
-7845034,Rosaline,Franklin,Chemist,X-Ray Inc.,rosaline.franklin@xray.org,555-12356,England,GB,100.00% - KCDNL2023SPKR
-7545455,William,Gosset,Statistician,Stats & Co.,william.gosset@statsco.net,555-0978,England,GB,100.00% - KCDNL2023SPKR
-1234509,Florence,Nightingale,Nurse,Modern Nursing,florence.Nightingale@modnurse.ai,555-76433,England,GB,100.00% - KCDNL2023SPKR
-986725,Marie,Curie,Chemist,RadioTruth,marie.curie@radiotruth.world,555-3957,Poland,PL,100.00% - KCDNL2023SPKR
-448700,Rachel,Carson,Biologist,BioSeas,r.carson@bioseas.ocean,555-77345,USA,US,100.00% - KCDNL2023SPKR
-990076,John,Snow,Physician,Docs Inc.,jshow@docsinc.health,555-0013894,England,GB,100.00% - KCDNL2023SPKR
-374561,Alan,Turing,Mathematician,TuringML,alan.turing@turingml.ai,555-039576,England,GB,100.00% - KCDNL2023SPKR
-778983,Johann,Gauss,Mathematician,Binomial LLC,j.gauss@binomial.math,555-93765,Germany,DE,100.00% - KCDNL2023SPKR
-763625,Albert,Einstein,Physicist,Relative,albert.einstein@relateive.corp,555-98465,Germany,DE,100.00% - KCDNL2023SPKR
-35464,John,Nash,Mathematician,GameNot,jnash@gamenot.math,555-02375,USA,US,100.00% - KCDNL2023SPKR
-243568,Stephen,Hawking,Physicist,Cosmo,stephen.hawking@cosmocorp.space,555-0476654,England,GB,100.00% - KCDNL2023SPKR
-449494,Enrico,Fermi,Physicist,Nucleus,e.fermi@atom.nucleus,555-547690,Italy,IT,100.00% - KCDNL2023SPKR
+Order number,Ticket number,First Name,Last Name,Email,Twitter,Company,Title,Featured,Ticket title,Ticket venue,Access code,Discount,Price,Currency,Number of tickets,Paid by (name),Paid by (email),Paid date (UTC),Checkin Date (UTC),Ticket Price Paid
+CNCFE25213608,CNCFA25236547,Aarno,Aukia,aarno.aukia@vshn.ch,,,,,Early Bird,In-person,,,45.00,EUR,1,Aarno Aukia,aarno.aukia@vshn.ch,2025-01-20 15:09:24+00:00,,45.00
+CNCFE25217342,CNCFA25239855,Aaron,Campbell,aaron.campbell@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Aaron Campbell,aaron@keydesign.com,2025-02-10 17:13:09+00:00,,20.00
+CNCFE25213464,CNCFA25236417,Abu,Rashid,abu.rashid@nordcloud.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Abu Rashid,abu.rashid@nordcloud.com,2025-01-20 07:27:32+00:00,,45.00
+CNCFE25215970,CNCFA25238665,Ahsan,Feroz,ahsan.feroz@csc.fi,,,,,Standard,In-person,,,225.00,EUR,3,Ahsan Feroz,ahsan.feroz@csc.fi,2025-01-31 12:25:17+00:00,,75.00
+CNCFE25215970,CNCFA25238664,Ahsan,Feroz,ahsan.feroz@csc.fi,,,,,Student,In-person,,,20.00,EUR,1,Ahsan Feroz,ahsan.feroz@csc.fi,2025-01-31 12:25:17+00:00,,20.00
+CNCFE25216765,CNCFA25239348,Aino,Mastosalo,aino.mastosalo@csc.fi,,,,,Standard,In-person,,,75.00,EUR,1,Aino Mastosalo,aino.mastosalo@csc.fi,2025-02-06 07:33:05+00:00,,75.00
+CNCFE25213715,CNCFA25236640,Aki,Ketolainen,ak-su@iname.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Aki Ketolainen,ak-su@iname.com,2025-01-20 20:58:46+00:00,,45.00
+CNCFE25214293,CNCFA25237157,Aku,Pasanen,aku.pasanen@csc.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Aku Pasanen,aku.pasanen@csc.fi,2025-01-23 07:48:24+00:00,,45.00
+CNCFE25214150,CNCFA25237027,Aleksei,Pogibelev,andrey.artemov@gmail.com,,,,,Early Bird,In-person,,,135.00,EUR,3,Andrei Artemov,andrey.artemov@gmail.com,2025-01-22 16:09:04+00:00,,45.00
+CNCFE25220549,CNCFA25242653,Alexey,Makhov,makhov.alex@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Alexey Makhov,makhov.alex@gmail.com,2025-02-24 10:25:55+00:00,,75.00
+CNCFE25216308,CNCFA25238957,Ali,Anafcheh,ali.anafcheh@relexsolutions.com,,,,,Standard,In-person,,,375.00,EUR,5,Oluwabunmi Michael Agbede,milder-rewards0h@icloud.com,2025-02-03 11:35:08+00:00,,75.00
+CNCFE25215966,CNCFA25238655,Alvaro,Gonzalez,alvaro.gonzalez@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25224212,CNCFA25245969,Alwin,Ebermann,alw@ivu.de,,,,,Late,In-person,,,100.00,EUR,1,Alwin Ebermann,alwin+github@alwin.me,2025-03-11 14:23:55+00:00,,100.00
+CNCFE25216455,CNCFA25239081,amarnath,valluri,amarnath.valluri@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,amarnath valluri,amarnath.valluri@gmail.com,2025-02-04 07:50:00+00:00,,75.00
+CNCFE25216308,CNCFA25238956,Amin,Afshar,amin.afshar@relexsolutions.com,,,,,Standard,In-person,,,375.00,EUR,5,Oluwabunmi Michael Agbede,milder-rewards0h@icloud.com,2025-02-03 11:35:08+00:00,,75.00
+CNCFE25224964,CNCFA25247223,Amirhossein,Moshfeghifar,amh.moshfeghi@gmail.com,,Nokia,Software Engineer,,Organizer,In-person,KCD2025ORGANIZER,,0.00,EUR,1,Amirhossein Moshfeghifar,amh.moshfeghi@gmail.com,2025-03-14 14:19:39+00:00,,0.00
+CNCFE25215208,CNCFA25237968,Ana,Lampayan,lampayan.ath@gmail.com,,,,,Early Bird,In-person,,,90.00,EUR,2,Francis (Mashi),fbdlampayan@gmail.com,2025-01-27 21:19:41+00:00,,45.00
+CNCFE25214150,CNCFA25237026,Anastasia,Bushneva,nstbushneva@gmail.com,,,,,Early Bird,In-person,,,135.00,EUR,3,Andrei Artemov,andrey.artemov@gmail.com,2025-01-22 16:09:04+00:00,,45.00
+CNCFE25215799,CNCFA25238499,Andrea,Abriani,andreabriani@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Andrea Abriani,andreabriani@gmail.com,2025-01-30 16:29:10+00:00,,75.00
+CNCFE25220547,CNCFA25242616,Andreas,Stjernström,andreas@bifrostsec.com,,,,,Sponsor Complimentary,In-person,SPNSR-CMPL,Bitfrostsec Gold sponsorship,0.00,EUR,2,Hannes Ullman,hannes@quritis.com,2025-02-24 10:17:48+00:00,,0.00
+CNCFE25214150,CNCFA25237025,Andrei,Artemov,andrey.artemov@gmail.com,,,,,Early Bird,In-person,,,135.00,EUR,3,Andrei Artemov,andrey.artemov@gmail.com,2025-01-22 16:09:04+00:00,,45.00
+CNCFE25224966,CNCFA25247222,Annie,Talvasto,annie.talvasto@gmail.com,AnnieTalvasto,,,,Organizer,In-person,KCD2025ORGANIZER,,0.00,EUR,1,Annie Talvasto,annie.talvasto@gmail.com,2025-03-14 14:20:29+00:00,,0.00
+CNCFE25225331,CNCFA25248032,Antti,Harju,antti.harju@smartly.io,,,,,Late,In-person,,,100.00,EUR,1,Antti Harju,strange.roof0960@fastmail.com,2025-03-17 13:44:01+00:00,,100.00
+CNCFE25222958,CNCFA25244852,Antti,Järvinen,antti.j.jarvinen@elisapolystar.com,,,,,Standard,In-person,,,75.00,EUR,1,Antti Järvinen,antti.jarvinen@gmail.com,2025-03-06 06:04:41+00:00,,75.00
+CNCFE25215942,CNCFA25238632,Antti,Mäntylä,antti.mantyla@accountorhr.fi,,,,,Standard,In-person,,,375.00,EUR,5,Esko Rahiala,erasileato@outlook.com,2025-01-31 09:57:18+00:00,,75.00
+CNCFE25224632,CNCFA25246321,Antti,Ollilainen,antti.ollilainen@capgemini.com,,,,,Late,In-person,,,300.00,EUR,3,Jenni Huovinen,huovinen817@gmail.com,2025-03-13 07:49:28+00:00,,100.00
+CNCFE25223796,CNCFA25245605,Antti,Relander,anttirelander@unity3d.com,,,,,Late,In-person,,,400.00,EUR,4,Valério Valério,vdv100@gmail.com,2025-03-10 11:13:02+00:00,,100.00
+CNCFE25215942,CNCFA25238633,Antti,Sivula,antti.sivula@accountorhr.fi,,,,,Standard,In-person,,,375.00,EUR,5,Esko Rahiala,erasileato@outlook.com,2025-01-31 09:57:18+00:00,,75.00
+CNCFE25221342,CNCFA25243341,Azidin,Shairi,azidin.shairi@msn.com,,,,,Standard,In-person,,,75.00,EUR,1,Azidin Shairi,azidin.shairi@msn.com,2025-02-26 19:41:35+00:00,,75.00
+CNCFE25225149,CNCFA25247378,Benjamin,Pettinen,benjamin.pettinen@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Benjamin Pettinen,benjamin.pettinen@hotmail.com,2025-03-15 22:17:03+00:00,,20.00
+CNCFE25224968,CNCFA25247224,Benson,Kamau,bk.kamau@outlook.com,,,,,Late,In-person,,,100.00,EUR,1,Waa Kahare,waakahare@gmail.com,2025-03-14 14:23:19+00:00,,100.00
+CNCFE25222574,CNCFA25244521,Björn,Domars,bjorn.domars@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25214053,CNCFA25236937,Conny,Sjöblom,conny.sjoblom@lyyti.com,,,,,Early Bird,In-person,,,180.00,EUR,4,Leonid Rimmer,leonid.rimmer@lyyti.com,2025-01-22 08:42:50+00:00,,45.00
+CNCFE25215424,CNCFA25238164,Dan,Kozytskyi,dan@confidentialmind.com,,,,,Standard,In-person,,ConfidentialMind Gold sponsorship,0.00,EUR,1,Dan Kozytskyi,dan@confidentialmind.com,2025-01-29 05:05:58+00:00,,0.00
+CNCFE25225421,CNCFA25248109,Daniel,Krook,dkrook@linuxfoundation.org,,CNCF,Senior Director of Developer Experience,,Sponsor Complimentary,In-person,SPNSR-CMPL,CNCF complimentary,0.00,EUR,1,Daniel Krook,dkrook@linuxfoundation.org,2025-03-17 19:32:09+00:00,,0.00
+CNCFE25222574,CNCFA25244522,Daniel,Nordström,daniel.nordstrom@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25215966,CNCFA25238659,Dean,Ruina,dean.ruina@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25213221,CNCFA25236199,Denis,Shatokhin,d_shatokhin@outlook.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Denis Shatokhin,d_shatokhin@outlook.com,2025-01-19 09:07:31+00:00,,45.00
+CNCFE25225274,CNCFA25247978,Denis,Shatokhin,d_shatokhin@outlook.com,,,,,Speaker,In-person,KCD2025SPEAKER,,0.00,EUR,1,Denis Shatokhin,d_shatokhin@outlook.com,2025-03-17 09:05:49+00:00,,0.00
+CNCFE25224698,CNCFA25246984,Dmytro,Abramov,dm.a.abramov@gmail.com,,,,,Late,In-person,,,100.00,EUR,1,Dmytro Abramov,dm.a.abramov@gmail.com,2025-03-13 14:59:30+00:00,,100.00
+CNCFE25212811,CNCFA25235817,Dmytro,Serbeniuk,dserbenyukgood@gmail.com,,,DevOps,,Early Bird,In-person,,,45.00,EUR,1,Dmytro Serbeniuk,dserbenyukgood@gmail.com,2025-01-16 14:57:25+00:00,,45.00
+CNCFE25213447,CNCFA25236400,Eelis,Orvas,eelis.orvas@gapps.fi,,,,,Early Bird,In-person,,,90.00,EUR,2,Eelis Orvas,eelis.orvas@gapps.fi,2025-01-20 07:05:56+00:00,,45.00
+CNCFE25224211,CNCFA25245968,Eetu,Eeronpoika,eetu.raunio@helsinki.fi,,,,,Student,In-person,,,20.00,EUR,1,Eetu Raunio,me@concernedhobbit.eu,2025-03-11 14:20:31+00:00,,20.00
+CNCFE25213447,CNCFA25236401,Elmo,Visuri,elmo.visuri@gapps.fi,,,,,Early Bird,In-person,,,90.00,EUR,2,Eelis Orvas,eelis.orvas@gapps.fi,2025-01-20 07:05:56+00:00,,45.00
+CNCFE25213902,CNCFA25236804,Erik,Ehrström,erik.ehrstrom@gmail.com,,,,,Student,In-person,,,20.00,EUR,1,Erik Ehrström,erik.ehrstrom@gmail.com,2025-01-21 15:31:33+00:00,,20.00
+CNCFE25220757,CNCFA25242814,Erika,Marttinen,erika.marttinen@outlook.com,,,,,Student,In-person,,,20.00,EUR,1,Erika Marttinen,erika.marttinen@outlook.com,2025-02-24 18:15:49+00:00,,20.00
+CNCFE25215942,CNCFA25238631,Esko,Rahiala,erasileato@outlook.com,,,,,Standard,In-person,,,375.00,EUR,5,Esko Rahiala,erasileato@outlook.com,2025-01-31 09:57:18+00:00,,75.00
+CNCFE25215208,CNCFA25237967,Francis,Lampayan,fbdlampayan@gmail.com,,,,,Early Bird,In-person,,,90.00,EUR,2,Francis (Mashi),fbdlampayan@gmail.com,2025-01-27 21:19:41+00:00,,45.00
+CNCFE25212610,CNCFA25235621,Gergely,Csatari,gergely.csatari@nokia.com,,Nokia,Senior Open Source Specialist,,Early Bird,In-person,,,45.00,EUR,1,Gergely Csatari,gergely.csatari@nokia.com,2025-01-15 20:54:00+00:00,,45.00
+CNCFE25223298,CNCFA25245143,Gergely,Csatari,gergely.csatari@nokia.com,,Nokia,Senior Open Source Specialist,,Organizer,In-person,KCD2025ORGANIZER,,0.00,EUR,1,Gergely Csatari,gergely.csatari@nokia.com,2025-03-07 14:55:58+00:00,,0.00
+CNCFE25220547,CNCFA25242615,Hannes,Ullman,hannes@bifrostsec.com,,,,,Sponsor Complimentary,In-person,SPNSR-CMPL,Bitfrostsec Gold sponsorship,0.00,EUR,2,Hannes Ullman,hannes@quritis.com,2025-02-24 10:17:48+00:00,,0.00
+CNCFE25223338,CNCFA25245178,Harri,Avellan,hhamalai@iki.fi,,,,,Late,In-person,,Waitlist Code for Harri Avellan,100.00,EUR,1,Harri Avellan,hhamalai@iki.fi,2025-03-07 18:59:29+00:00,,100.00
+CNCFE25215281,CNCFA25238042,Henri,Malinen,henri.malinen@gapps.fi,,,,,Standard,In-person,,,150.00,EUR,2,Robert Lagus,robert+mos20bsa@lagus.net,2025-01-28 13:15:55+00:00,,75.00
+CNCFE25219627,CNCFA25241795,Henttunen Kaisa,Johanna,kaisa.henttunen@iki.fi,,,,,Standard,In-person,,,75.00,EUR,1,Henttunen Kaisa Johanna,kaisa.henttunen@iki.fi,2025-02-20 07:56:05+00:00,,75.00
+CNCFE25216695,CNCFA25239288,Hive,Group,eventi@conhive.it,,,,,Standard,In-person,,,75.00,EUR,1,Hive Group,hivegroupconhive@gmail.com,2025-02-05 14:57:26+00:00,,75.00
+CNCFE25217032,CNCFA25239591,Igor,Golm,igor.golm@wikdom.eu,,,,,Standard,In-person,,,75.00,EUR,1,Igor Golm,igor.golm@wikdom.eu,2025-02-07 14:27:31+00:00,,75.00
+CNCFE25216308,CNCFA25238958,Ijlal,Niazi,ijlal.niazi@relexsolutions.com,,,,,Standard,In-person,,,375.00,EUR,5,Oluwabunmi Michael Agbede,milder-rewards0h@icloud.com,2025-02-03 11:35:08+00:00,,75.00
+CNCFE25213705,CNCFA25236629,Ilja,Smelich,plustig@duck.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Peter Lustig,plustig@duck.com,2025-01-20 19:56:39+00:00,,45.00
+CNCFE25213136,CNCFA25236123,Innokentii,Kozlov,innokentii.kozlov@tuni.fi,,,,,Student,In-person,,,20.00,EUR,1,Innokentii Kozlov,innokentiikozlov@gmail.com,2025-01-18 07:28:13+00:00,,20.00
+CNCFE25219299,CNCFA25241503,Ishfaq,Zareen,ishfaq.zareen@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,IZ SSH,ishfaq.zareen.ssh@gmail.com,2025-02-19 06:28:36+00:00,,75.00
+CNCFE25213157,CNCFA25236143,Jack,Waddington,jack@waddington.me,,,,,Student,In-person,,,20.00,EUR,1,Jack Waddington,jack@waddington.me,2025-01-18 14:20:46+00:00,,20.00
+CNCFE25213154,CNCFA25236140,Jani,Eerola,jani.eerola@iki.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Jani Eerola,jani.eerola@iki.fi,2025-01-18 13:21:28+00:00,,45.00
+CNCFE25223283,CNCFA25245128,Jani,Myllyviita,jmyllyviita@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Jani Anselm Myllyviita,jmyllyviita@gmail.com,2025-03-07 13:56:30+00:00,,75.00
+CNCFE25218239,CNCFA25240656,Jani-Matti,Hätinen,janimatti.hatinen@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Jani-Matti Hätinen,janimatti.hatinen@gmail.com,2025-02-15 15:30:14+00:00,,75.00
+CNCFE25213511,CNCFA25237146,Jarkko,Toivonen,jarkko.toivonen@csc.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Jarkko Toivonen,jarkko.toivonen@csc.fi,2025-01-20 08:36:38+00:00,,45.00
+CNCFE25221903,CNCFA25243898,Jarkko,Vehvilainen,jarkko.vehvilainen@suse.com,,,,,Sponsor Complimentary,In-person,SPNSR-CMPL,SUSE Gold sponsorship,0.00,EUR,1,Jarkko Vehvilainen,jarkko.vehvilainen@suse.com,2025-03-01 07:18:34+00:00,,0.00
+CNCFE25213813,CNCFA25236731,Jarno,Nauska,jarno.nauska@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Jarno Nauska,jarno.nauska@gmail.com,2025-01-21 09:06:11+00:00,,45.00
+CNCFE25213559,CNCFA25236499,Jayshree,Rathi,jayshreerathi111@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Jayshree Rathi,jayshreerathi111@gmail.com,2025-01-20 10:30:37+00:00,,45.00
+CNCFE25215966,CNCFA25238657,Jemal,Tahir,jemal.tahir@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25223284,CNCFA25245129,Jenni,Huovinen,jenni.huovinen@capgemini.com,,,,,Standard,In-person,,,75.00,EUR,1,Jenni Huovinen,huovinen817@gmail.com,2025-03-07 14:10:33+00:00,,75.00
+CNCFE25224632,CNCFA25246320,Jenni,Wesslin,jenni.wesslin@capgemini.com,,,,,Late,In-person,,,300.00,EUR,3,Jenni Huovinen,huovinen817@gmail.com,2025-03-13 07:49:28+00:00,,100.00
+CNCFE25217844,CNCFA25240294,Jesse,Aspnäs,jesse.aspnas@abo.fi,,,,,Student,In-person,,,20.00,EUR,1,Jesse Aspnäs,jesse@jaspnas.com,2025-02-13 05:04:35+00:00,,20.00
+CNCFE25216593,CNCFA25239198,Joel,Andersson,joelande94@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Joel Andersson,joelande94@gmail.com,2025-02-04 20:46:38+00:00,,75.00
+CNCFE25225915,CNCFA25248540,Jonne,Soininen,jonne.soininen@nokia.com,,,,,Late,In-person,,,100.00,EUR,1,Jonne Soininen,jonne.soininen@nokia.com,2025-03-18 20:21:20+00:00,,100.00
+CNCFE25217037,CNCFA25239596,Jukka,Forsgren,forsgren@iki.fi,,,,,Standard,In-person,,,75.00,EUR,1,Jukka Forsgren,forsgren@iki.fi,2025-02-07 15:04:29+00:00,,75.00
+CNCFE25215931,CNCFA25238626,Kai,Hult,kai.hult@accountorhr.fi,,,,,Standard,In-person,,,75.00,EUR,1,Kai Hult,kai.hult@gmail.com,2025-01-31 08:30:02+00:00,,75.00
+CNCFE25215713,CNCFA25238420,Kalle,Happonen,kalle.happonen@csc.fi,,,,,Standard,In-person,,,75.00,EUR,1,Kalle Happonen,kalle.happonen@csc.fi,2025-01-30 09:46:32+00:00,,75.00
+CNCFE25214068,CNCFA25236951,Kalle,Narinen,kallenarinen@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Kalle Narinen,kallenarinen@gmail.com,2025-01-22 10:51:02+00:00,,45.00
+CNCFE25214073,CNCFA25236955,Kari,Heiskanen,kari.heiskanen@op.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Kari Heiskanen,kari.heiskanen@op.fi,2025-01-22 10:58:51+00:00,,45.00
+CNCFE25223745,CNCFA25245557,Kashif,Khan,kashif@cloudnativefinland.org,,,,,Organizer,In-person,KCD2025ORGANIZER,,0.00,EUR,1,Kashif Khan,kashif.khan@est.tech,2025-03-10 10:05:09+00:00,,0.00
+CNCFE25215937,CNCFA25238624,Kim,Sondrup,kim@sondrup.io,,,,,Standard,In-person,,,75.00,EUR,1,Kim Sondrup,kim@sondrup.io,2025-01-31 09:43:02+00:00,,75.00
+CNCFE25221500,CNCFA25243487,Kimmo,Lehto,klehto@mirantis.com,,,,,Standard,In-person,,,75.00,EUR,1,Kimmo Lehto,klehto@mirantis.com,2025-02-27 11:17:53+00:00,,75.00
+CNCFE25216308,CNCFA25238959,Konsta,Kantola,konsta.kantola@relexsolutions.com,,,,,Standard,In-person,,,375.00,EUR,5,Oluwabunmi Michael Agbede,milder-rewards0h@icloud.com,2025-02-03 11:35:08+00:00,,75.00
+CNCFE25223796,CNCFA25245606,Kristian,Klemets,kristian.klemets@unity3d.com,,,,,Late,In-person,,,400.00,EUR,4,Valério Valério,vdv100@gmail.com,2025-03-10 11:13:02+00:00,,100.00
+CNCFE25222574,CNCFA25244518,Lars,Sundman,lars.sundman@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25218057,CNCFA25240484,Lennart,Jern,lennart.jern@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Lennart Jern,lennart.jern@gmail.com,2025-02-14 08:57:17+00:00,,75.00
+CNCFE25224705,CNCFA25246994,Lennart,Jern,lennart.jern@gmail.com,,,,,Speaker,In-person,KCD2025SPEAKER,,0.00,EUR,1,Lennart Jern,lennart.jern@gmail.com,2025-03-13 15:39:18+00:00,,0.00
+CNCFE25214053,CNCFA25236934,Leonid,Rimmer,leonid.rimmer@lyyti.com,,,,,Early Bird,In-person,,,180.00,EUR,4,Leonid Rimmer,leonid.rimmer@lyyti.com,2025-01-22 08:42:50+00:00,,45.00
+CNCFE25222996,CNCFA25244888,Lorenzo,Tucci,amministrazione@invictusaziende.it,,,,,Standard,In-person,,,75.00,EUR,1,Claudio Maradonna,amministrazione@invictusaziende.it,2025-03-06 10:18:06+00:00,,75.00
+CNCFE25223308,CNCFA25245154,Lucas,Käldström,lucas@luxaslabs.com,,,,,Organizer,In-person,KCD2025ORGANIZER,,0.00,EUR,1,Lucas Käldström,lucas.kaldstrom@hotmail.co.uk,2025-03-07 16:26:07+00:00,,0.00
+CNCFE25213155,CNCFA25236141,Mahdiyehsadat,Mirsharifi,mahdiyehsadat.mirsharifi@tuni.fi,,,,,Student,In-person,,,20.00,EUR,1,Mahdiyeh Mirsharifi,mahdiyeh.mirsharifi@gmail.com,2025-01-18 14:00:34+00:00,,20.00
+CNCFE25217482,CNCFA25239983,Marcel,Schmidt,subdivide_overstock168@slmail.me,,,,,Standard,In-person,,,75.00,EUR,1,Marcel Schmidt,subdivide_overstock168@slmail.me,2025-02-11 09:08:29+00:00,,75.00
+CNCFE25222813,CNCFA25244724,Mariam,Benemla,mariam.benemla@netum.fi,,,,,Standard,In-person,,,75.00,EUR,1,Mariam Benemla,mariam.benemla@netum.fi,2025-03-05 12:04:46+00:00,,75.00
+CNCFE25215351,CNCFA25238100,Markku,Räsänen,markku@confidentialmind.com,,,,,Standard,In-person,,,75.00,EUR,1,Markku Räsänen,markku@confidentialmind.com,2025-01-28 19:02:10+00:00,,75.00
+CNCFE25224185,CNCFA25245952,Markus,Kaihola,markus@makeri89.com,,,,,Student,In-person,,,20.00,EUR,1,Markus Kaihola,markus@makeri89.com,2025-03-11 12:25:16+00:00,,20.00
+CNCFE25224632,CNCFA25246322,Markus,Muntila,markus.muntila@capgemini.com,,,,,Late,In-person,,,300.00,EUR,3,Jenni Huovinen,huovinen817@gmail.com,2025-03-13 07:49:28+00:00,,100.00
+CNCFE25224814,CNCFA25247092,Markus,Rahkola,markus.m.rahkola@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Markus Rahkola,markus.m.rahkola@aalto.fi,2025-03-13 19:47:30+00:00,,20.00
+CNCFE25222124,CNCFA25244120,Markus,Toivonen,markus.toivonen@hoxhunt.com,,,,,Standard,In-person,,,300.00,EUR,4,Markus Toivonen,toivonen.make@gmail.com,2025-03-03 10:10:46+00:00,,75.00
+CNCFE25222408,CNCFA25244357,Martin,Panza,martin.panza.p@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Martin Peralta,martin.panza@happeo.com,2025-03-04 07:45:52+00:00,,75.00
+CNCFE25215281,CNCFA25238041,Matias,Elomäki,matias.elomaki@gapps.fi,,,,,Standard,In-person,,,150.00,EUR,2,Robert Lagus,robert+mos20bsa@lagus.net,2025-01-28 13:15:55+00:00,,75.00
+CNCFE25215288,CNCFA25238046,Megan,Liu,meirongliu2008@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Megan Liu,meirongliu2008@gmail.com,2025-01-28 14:04:45+00:00,,75.00
+CNCFE25216308,CNCFA25238955,Michael,Agbede,oluwabunmi.agbede@relexsolutions.com,,,,,Standard,In-person,,,375.00,EUR,5,Oluwabunmi Michael Agbede,milder-rewards0h@icloud.com,2025-02-03 11:35:08+00:00,,75.00
+CNCFE25217780,CNCFA25240244,Milana,Begantsova,milka3341@gmail.com,,,,,Student,In-person,,,20.00,EUR,1,Yerzhan Zhamashev,yerzhanzhamash@gmail.com,2025-02-12 17:42:31+00:00,,20.00
+CNCFE25214041,CNCFA25236925,Mirek,Kudinoff,mirek.kudinoff@hotmail.com,,,,,Student,In-person,,,20.00,EUR,1,Mirek Kudinoff,mirek.kudinoff@hotmail.com,2025-01-22 08:03:39+00:00,,20.00
+CNCFE25224471,CNCFA25246173,Miro,Laukkanen,bgu196@myy.haaga-helia.fi,,,,,Student,In-person,,,20.00,EUR,1,Miro Laukkanen,bgu196@myy.haaga-helia.fi,2025-03-12 14:23:33+00:00,,20.00
+CNCFE25214291,CNCFA25237149,Miska,Husgafvel,miska.husgafvel@csc.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Miska Husgafvel,miska.husgafvel@csc.fi,2025-01-23 07:24:53+00:00,,45.00
+CNCFE25224175,CNCFA25245942,Mitja,Karhusaari,mitja.karhusaari@helsinki.fi,,,,,Student,In-person,,,20.00,EUR,1,Mitja Karhusaari,mitja.karhusaari@helsinki.fi,2025-03-11 11:40:13+00:00,,20.00
+CNCFE25217856,CNCFA25240307,Muhammad,Bin Azhar,muhammad.azhar@csc.fi,,,,,Standard,In-person,,,75.00,EUR,1,Muhammad Bin Azhar,muhammad.azhar@csc.fi,2025-02-13 07:30:22+00:00,,75.00
+CNCFE25222574,CNCFA25244519,Niclas,Jern,niclas@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25214330,CNCFA25237204,Nikolay,Kuznetsov,niklas.smedsson@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Niklas Smedsson,niklas.smedsson@gmail.com,2025-01-23 10:52:41+00:00,,45.00
+CNCFE25224168,CNCFA25245935,Noora,Kuosa,noora.kuosa@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Noora Kuosa,noora.kuosa@aalto.fi,2025-03-11 11:03:11+00:00,,20.00
+CNCFE25215966,CNCFA25238656,Olli,Tourunen,olli.tourunen@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25221823,CNCFA25243827,Olli,Tuominen,olli.tuominen@suse.com,,,,,Sponsor Complimentary,In-person,SPNSR-CMPL,SUSE Gold sponsorship,0.00,EUR,1,Olli Tuominen,olli.tuominen@suse.com,2025-02-28 16:36:44+00:00,,0.00
+CNCFE25217312,CNCFA25239829,Olli,Vanne,olli.vanne@nordea.com,,,,,Standard,In-person,,,75.00,EUR,1,Olli Vanne,olli.vanne@nordea.com,2025-02-10 15:00:20+00:00,,75.00
+CNCFE25215970,CNCFA25238666,Oussama,Bekkouche,uussama.bekkouche@csc.fi,,,,,Standard,In-person,,,225.00,EUR,3,Ahsan Feroz,ahsan.feroz@csc.fi,2025-01-31 12:25:17+00:00,,75.00
+CNCFE25222954,CNCFA25244848,Pasi,Nyström,pasi.nystrom@outlook.com,,,,,Standard,In-person,,,75.00,EUR,1,Pasi Nystrlm,panystro@gmail.com,2025-03-06 05:45:45+00:00,,75.00
+CNCFE25214985,CNCFA25237767,Patrik,Hollming,patrik.hollming@helsinki.fi,,,,,Student,In-person,,,20.00,EUR,1,Patrik Hollming,patrik.hollming@outlook.com,2025-01-25 11:39:00+00:00,,20.00
+CNCFE25224193,CNCFA25245958,Pekka,Mäki-Mikola,pekka.maki-mikola@helsinki.fi,,,,,Student,In-person,,,20.00,EUR,1,Pekka Pekka,hyper.vegeta@gmail.com,2025-03-11 12:56:13+00:00,,20.00
+CNCFE25215966,CNCFA25238660,Petri,Klemelä,petri.klemela@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25223418,CNCFA25245250,Petteri,Pulkkinen,petteri.k.pulkkinen@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Petteri Pulkkinen,epelip@hotmail.com,2025-03-08 14:12:17+00:00,,20.00
+CNCFE25213811,CNCFA25236728,Petteri,Vaarala,petteri.vaarala@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Petteri Vaarala,petteri.vaarala@gmail.com,2025-01-21 08:43:05+00:00,,45.00
+CNCFE25216753,CNCFA25239336,Philip,Brown,philip@koob.foo,,,,,Standard,In-person,,,75.00,EUR,1,Philip Brown,philip@koob.foo,2025-02-06 04:20:42+00:00,,75.00
+CNCFE25212776,CNCFA25235784,Radhika,Punchepady Raju,punchepady.radhika@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Radhika Punchepady Raju,punchepady.radhika@gmail.com,2025-01-16 08:56:17+00:00,,45.00
+CNCFE25222124,CNCFA25244123,Riku,Lääkkölä,riku.laakkola@hoxhunt.com,,,,,Standard,In-person,,,300.00,EUR,4,Markus Toivonen,toivonen.make@gmail.com,2025-03-03 10:10:46+00:00,,75.00
+CNCFE25224625,CNCFA25246313,Risto,Viitanen,risto.viitanen@monad.fi,,,,,Late,In-person,,,300.00,EUR,3,Markus Sertamo,markus.sertamo@monad.fi,2025-03-13 06:22:42+00:00,,100.00
+CNCFE25213825,CNCFA25236742,Roman,Semkin,boogaloosurf@duck.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Roman Semkin,boogaloosurf@duck.com,2025-01-21 09:48:34+00:00,,45.00
+CNCFE25213153,CNCFA25236139,Sakari,Laitinen,sakari.laitinen@iki.fi,,,,,Early Bird,In-person,,,45.00,EUR,1,Sakari Laitinen,sakari.laitinen@iki.fi,2025-01-18 13:20:09+00:00,,45.00
+CNCFE25215942,CNCFA25238634,Sami,Mustalahti,sami.mustalahti@accountorhr.fi,,,,,Standard,In-person,,,375.00,EUR,5,Esko Rahiala,erasileato@outlook.com,2025-01-31 09:57:18+00:00,,75.00
+CNCFE25215942,CNCFA25238635,Sami,Niemisalo,sami.niemisalo@accountorhr.fi,,,,,Standard,In-person,,,375.00,EUR,5,Esko Rahiala,erasileato@outlook.com,2025-01-31 09:57:18+00:00,,75.00
+CNCFE25214289,CNCFA25237147,Sami,Silén,sami.p.silen@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Sami Silén,shan@laukkoski.com,2025-01-23 07:13:01+00:00,,45.00
+CNCFE25214053,CNCFA25236936,Sami,Spets,sami.spets@lyyti.com,,,,,Early Bird,In-person,,,180.00,EUR,4,Leonid Rimmer,leonid.rimmer@lyyti.com,2025-01-22 08:42:50+00:00,,45.00
+CNCFE25213177,CNCFA25236156,Samuli,Heinonen,samuli@neutraali.net,,,,,Early Bird,In-person,,,45.00,EUR,1,Samuli Heinonen,samuli@neutraali.net,2025-01-18 16:49:11+00:00,,45.00
+CNCFE25224625,CNCFA25246314,Santeri,Siiranen,santeri.siiranen@monad.fi,,,,,Late,In-person,,,300.00,EUR,3,Markus Sertamo,markus.sertamo@monad.fi,2025-03-13 06:22:42+00:00,,100.00
+CNCFE25222218,CNCFA25244179,Sean,Chen,xinyang.chen@helsinki.fi,,,,,Student,In-person,,,20.00,EUR,1,Sean Chen,me@chenxy.tech,2025-03-03 15:34:37+00:00,,20.00
+CNCFE25223796,CNCFA25245607,Shijun,Wang,shijun@unity3d.com,,,,,Late,In-person,,,400.00,EUR,4,Valério Valério,vdv100@gmail.com,2025-03-10 11:13:02+00:00,,100.00
+CNCFE25224163,CNCFA25245930,Siiri,Kemppainen,siiri.kemppainen@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Siiri Kemppainen,siiri.kemppainen@aalto.fi,2025-03-11 10:35:10+00:00,,20.00
+CNCFE25222124,CNCFA25244121,Soeun,Jang,soeun.jang@hoxhunt.com,,,,,Standard,In-person,,,300.00,EUR,4,Markus Toivonen,toivonen.make@gmail.com,2025-03-03 10:10:46+00:00,,75.00
+CNCFE25215109,CNCFA25237884,Tanel,Mae,tanel.mae@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Tanel Mae,tanel.mae@gmail.com,2025-01-27 08:52:53+00:00,,45.00
+CNCFE25221517,CNCFA25243500,Tero,Saarni,tero.saarni@ericsson.com,,,,,Standard,In-person,,,75.00,EUR,1,Tero Saarni,tero.saarni@ericsson.com,2025-02-27 12:49:39+00:00,,75.00
+CNCFE25222124,CNCFA25244122,Tero,Tuomala,tero.tuomala@hoxhunt.com,,,,,Standard,In-person,,,300.00,EUR,4,Markus Toivonen,toivonen.make@gmail.com,2025-03-03 10:10:46+00:00,,75.00
+CNCFE25224207,CNCFA25245965,Timo,Kolonen,timo.kolonen@gmail.com,,,,,Late,In-person,,,100.00,EUR,1,Timo Kolonen,timo.kolonen@gmail.com,2025-03-11 14:01:27+00:00,,100.00
+CNCFE25218103,CNCFA25240528,Timo,Perala,timo.perala@nokia.com,,,,,Standard,In-person,,,75.00,EUR,1,Timo Perala,timo.perala@nokia.com,2025-02-14 13:23:07+00:00,,75.00
+CNCFE25222574,CNCFA25244523,Tobias,Asplund,tobias.asplund@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25222574,CNCFA25244524,Tobias,Zetter,tobias@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25224128,CNCFA25245900,Toikka,Juhani,santeri+kcd@fe80.fi,,,,,Late,In-person,,,100.00,EUR,1,Santeri Toikka,santeri.toikka@iki.fi,2025-03-11 08:57:05+00:00,,100.00
+CNCFE25224198,CNCFA25245960,Tomas,Terälä,tomas.terala@helsinki.fi,,,,,Late,In-person,,,100.00,EUR,1,Tomas Terälä,tomas.terala@helsinki.fi,2025-03-11 13:17:27+00:00,,100.00
+CNCFE25213159,CNCFA25236145,Tommi,Marjomaa,tommi.marjomaa@gmail.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Tommi Marjomaa,tommi.marjomaa@gmail.com,2025-01-18 14:54:58+00:00,,45.00
+CNCFE25217469,CNCFA25239970,Tommi,Oinonen,tommi.r.oinonen@aalto.fi,,,,,Student,In-person,,,20.00,EUR,1,Tommi Oinonen,tommi.r.oinonen@aalto.fi,2025-02-11 08:49:09+00:00,,20.00
+CNCFE25215977,CNCFA25238675,Toni,Arte,toni.arte@iki.fi,,,,,Standard,In-person,,,75.00,EUR,1,Toni Arte,toni.arte@iki.fi,2025-01-31 13:21:36+00:00,,75.00
+CNCFE25214053,CNCFA25236935,Tony,Karlsson,tony.karlsson@lyyti.com,,,,,Early Bird,In-person,,,180.00,EUR,4,Leonid Rimmer,leonid.rimmer@lyyti.com,2025-01-22 08:42:50+00:00,,45.00
+CNCFE25215966,CNCFA25238658,Tristan,Perard,tristan.perard@csc.fi,,,,,Standard,In-person,,,450.00,EUR,6,Juha Tornroos,juha.tornroos@csc.fi,2025-01-31 12:04:34+00:00,,75.00
+CNCFE25224625,CNCFA25246312,Tuomas,Peltola,tuomas.peltola@monad.fi,,,,,Late,In-person,,,300.00,EUR,3,Markus Sertamo,markus.sertamo@monad.fi,2025-03-13 06:22:42+00:00,,100.00
+CNCFE25221806,CNCFA25243761,Tuomas,Ruusumiekka,tuomas.ruusumiekka@metacoregames.com,,,,,Sponsor Complimentary,In-person,SPNSR-CMPL,Metacore Community Sponsor,0.00,EUR,1,Tuomas Ruusumiekka,tuomas.ruusumiekka@metacoregames.com,2025-02-28 13:43:52+00:00,,0.00
+CNCFE25213448,CNCFA25236399,Tuomas,Tielinen,tuomas+linux-foundation@tielinen.me,,,,,Early Bird,In-person,,,45.00,EUR,1,Tuomas Tielinen,tuomas+linux-foundation@tielinen.me,2025-01-20 07:06:31+00:00,,45.00
+CNCFE25214886,CNCFA25237687,Tuomo,Tanskanen,tuomo.tanskanen@est.tech,,,,,Early Bird,In-person,,,45.00,EUR,1,Tuomo Tanskanen,tuomo.tanskanen@est.tech,2025-01-24 16:26:56+00:00,,45.00
+CNCFE25220583,CNCFA25242646,Tuuli,Sarantola,tuuli.sarantola@gmail.com,,,,,Standard,In-person,,,75.00,EUR,1,Tuuli Sarantola,tuuli.sarantola@gmail.com,2025-02-24 12:06:48+00:00,,75.00
+CNCFE25220536,CNCFA25242605,Uday,Thota,udaykiran@alumni.iitm.ac.in,,,,,Standard,In-person,,,75.00,EUR,1,Uday Kiran,udaykiran@alumni.iitm.ac.in,2025-02-24 08:55:53+00:00,,75.00
+CNCFE25215970,CNCFA25238667,Vahid,Mohsseni,vahid.mohsseni@csc.fi,,,,,Standard,In-person,,,225.00,EUR,3,Ahsan Feroz,ahsan.feroz@csc.fi,2025-01-31 12:25:17+00:00,,75.00
+CNCFE25215157,CNCFA25237926,Valentin,Ionita,linuxfoundation.b04a3@simplelogin.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Valentin Ionita,linuxfoundation.b04a3@simplelogin.com,2025-01-27 17:14:43+00:00,,45.00
+CNCFE25223796,CNCFA25245604,Valério,Valério,vdv100@gmail.com,,,,,Late,In-person,,,400.00,EUR,4,Valério Valério,vdv100@gmail.com,2025-03-10 11:13:02+00:00,,100.00
+CNCFE25223220,CNCFA25245078,Vartika,Shah,vartika.shah@csc.fi,,,,,Standard,In-person,,,75.00,EUR,1,Juha Tornroos,juha.tornroos@csc.fi,2025-03-07 08:23:42+00:00,,75.00
+CNCFE25223441,CNCFA25245266,Vesa,Laakso,vesa.laakso+cncfspam@rovio.com,,,,,Late,In-person,,,100.00,EUR,1,Vesa Laakso,vesa.laakso@rovio.com,2025-03-08 16:42:12+00:00,,100.00
+CNCFE25213516,CNCFA25236463,Ville,Gustafsson,ville.gustafsson@rovio.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Ville Gustafsson,ville.gustafsson@rovio.com,2025-01-20 08:44:15+00:00,,45.00
+CNCFE25214816,CNCFA25237628,Ville,Vesilehto,ville.vesilehto@upcloud.com,,,,,Early Bird,In-person,,,45.00,EUR,1,Ville Eemeli Törhönen,ville.torhonen@upcloud.com,2025-01-24 13:03:53+00:00,,45.00
+CNCFE25222574,CNCFA25244520,Ville-Pekka,Hoikka,ville-pekka.hoikka@walkbase.com,,,,,Standard,In-person,,,525.00,EUR,7,Lars Sundman,lars.sundman@iki.fi,2025-03-04 11:50:23+00:00,,75.00
+CNCFE25223225,CNCFA25245085,Vlad,Stirbu,vlad.a.stirbu@jyu.fi,,,,,Standard,In-person,,,75.00,EUR,1,Vlad Stirbu,vstirbu@gmail.com,2025-03-07 09:00:54+00:00,,75.00

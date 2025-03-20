@@ -1,12 +1,10 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
-import pandas as pd
 import os
-from typing import List, Optional
+from typing import Optional
 import shutil
-from confbadger import createBadge
-import tempfile
+from confbadger import createBadge, read_data_file
 
 app = FastAPI()
 
@@ -36,9 +34,8 @@ async def upload_csv(file: UploadFile = File(...)):
     
     try:
         # Read the CSV to validate it
-        df = pd.read_csv(temp_file_path)
-        required_columns = ["Order #", "First Name", "Last Name", "Email", "Phone Number", 
-                          "Country", "Country Code", "Job Title", "Company", "Discount"]
+        df = read_data_file(temp_file_path)
+        required_columns = ["Order number", "First Name", "Last Name", "Email", "Company", "Title", "Ticket title"]
         
         if not all(col in df.columns for col in required_columns):
             raise HTTPException(status_code=400, detail="CSV must contain all required columns")
@@ -63,8 +60,7 @@ async def search_attendees(
     ticket_type: Optional[str] = None
 ):
     try:
-        df = pd.read_csv("data.csv")
-        
+        df = read_data_file("data.csv")
         # Apply filters
         if name:
             # Convert name to lowercase for case-insensitive search
@@ -77,11 +73,11 @@ async def search_attendees(
             df = df[name_mask]
             
         if title:
-            df = df[df["Job Title"].str.contains(title, case=False, na=False)]
+            df = df[df["Title"].str.contains(title, case=False, na=False)]
         if company:
             df = df[df["Company"].str.contains(company, case=False, na=False)]
         if ticket_type:
-            df = df[df["Discount"].str.contains(ticket_type, case=False, na=False)]
+            df = df[df["Ticket title"].str.contains(ticket_type, case=False, na=False)]
         
         return df.to_dict(orient="records")
     except Exception as e:
