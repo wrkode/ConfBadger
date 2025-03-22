@@ -1,17 +1,17 @@
-Order #,First Name,Last Name,Job Title,Company,Email,Phone Number,Country,Country Code,Discount
-845602,John,Smith,Student,,j.smith@worlduni.com,555-4992345,Ireland,IRL,75.00% - STUDENTKCD75
-,Eve,Moneypenny,Researcher,Scotland Yard,e.moneypenny@syard.co.uk,555-4587,Scotland,scotland,100.00% - KCDAMS23-ANDYFRIENDS
-,Tom,Waits,Vocalist,Alice Co,tw@alice.you,555-75476,USA,US,100.00% - KCDAMS23_ORGANIZERS_42
-,William,Orbit,Technologist,Orbital,w.orbit@orbit.my,555-45098,United Kingdom,GB,100.00% - KCDAMS23_MULTILAYER_FREE_RRTFS
-7845034,Rosaline,Franklin,Chemist,X-Ray Inc.,rosaline.franklin@xray.org,555-12356,England,GB,100.00% - KCDNL2023SPKR
-7545455,William,Gosset,Statistician,Stats & Co.,william.gosset@statsco.net,555-0978,England,GB,100.00% - KCDNL2023SPKR
-1234509,Florence,Nightingale,Nurse,Modern Nursing,florence.Nightingale@modnurse.ai,555-76433,England,GB,100.00% - KCDNL2023SPKR
-986725,Marie,Curie,Chemist,RadioTruth,marie.curie@radiotruth.world,555-3957,Poland,PL,100.00% - KCDNL2023SPKR
-448700,Rachel,Carson,Biologist,BioSeas,r.carson@bioseas.ocean,555-77345,USA,US,100.00% - KCDNL2023SPKR
-990076,John,Snow,Physician,Docs Inc.,jshow@docsinc.health,555-0013894,England,GB,100.00% - KCDNL2023SPKR
-374561,Alan,Turing,Mathematician,TuringML,alan.turing@turingml.ai,555-039576,England,GB,100.00% - KCDNL2023SPKR
-778983,Johann,Gauss,Mathematician,Binomial LLC,j.gauss@binomial.math,555-93765,Germany,DE,100.00% - KCDNL2023SPKR
-763625,Albert,Einstein,Physicist,Relative,albert.einstein@relateive.corp,555-98465,Germany,DE,100.00% - KCDNL2023SPKR
-35464,John,Nash,Mathematician,GameNot,jnash@gamenot.math,555-02375,USA,US,100.00% - KCDNL2023SPKR
-243568,Stephen,Hawking,Physicist,Cosmo,stephen.hawking@cosmocorp.space,555-0476654,England,GB,100.00% - KCDNL2023SPKR
-449494,Enrico,Fermi,Physicist,Nucleus,e.fermi@atom.nucleus,555-547690,Italy,IT,100.00% - KCDNL2023SPKR
+﻿Order number,Ticket number,First Name,Last Name,Email,Twitter,Company,Title,Featured,Ticket title,Ticket venue,Access code,Discount,Price,Currency,Number of tickets,Paid by (name),Paid by (email),Paid date (UTC),Checkin Date (UTC),Ticket Price Paid
+CNCFE23213608,CNCFA23236346,John,Smith,j.smith@worlduni.com,,,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Smith,j.smith@worlduni.com,2025-01-20 17:09,,45.00
+CNCFE23216342,CNCFA23239833,Eve,Moneypenny,e.moneypenny@syard.co.uk,,Scotland Yard,,,Student,In-person,,Student,20.00,EUR,1,Moneypenny,e.moneypenny@syard.co.uk,2025-02-10 19:13,,20.00
+CNCFE23213464,CNCFA23236416,Tom,Waits,tw@alice.you,,Alice Co,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Waits,tw@alice.you,2025-01-20 09:27,,45.00
+CNCFE23213960,CNCFA23238663,William,Orbit,w.orbit@orbit.my,,Orbital,,,Standard,In-person,,Standard,225.00,EUR,3,Orbit,w.orbit@orbit.my,2025-01-31 14:25,,75.00
+CNCFE23213960,CNCFA23238664,Rosaline,Franklin,rosaline.franklin@xray.org,,X-Ray Inc.,,,Student,In-person,,Student,20.00,EUR,1,Franklin,rosaline.franklin@xray.org,2025-01-31 14:25,,20.00
+CNCFE23216663,CNCFA23239348,William,Gosset,william.gosset@statsco.net,,Stats & Co.,,,Standard,In-person,,Standard,75.00,EUR,1,Gosset,william.gosset@statsco.net,2025-02-06 09:33,,75.00
+CNCFE23213613,CNCFA23236640,Florence,Nightingale,florence.Nightingale@modnurse.ai,,Modern Nursing,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Nightingale,florence.Nightingale@modnurse.ai,2025-01-20 22:58,,45.00
+CNCFE23214293,CNCFA23236136,Marie,Curie,marie.curie@radiotruth.world,,RadioTruth,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Curie,marie.curie@radiotruth.world,2025-01-23 09:48,,45.00
+CNCFE23214130,CNCFA23236026,Rachel,Carson,r.carson@bioseas.ocean,,BioSeas,,,Early Bird,In-person,,Early Bird,135.00,EUR,3,Carson,r.carson@bioseas.ocean,2025-01-22 18:09,,45.00
+CNCFE23220349,CNCFA23242633,John,Snow,jshow@docsinc.health,,Docs Inc.,,,Standard,In-person,,Standard,75.00,EUR,1,Snow,jshow@docsinc.health,2025-02-24 12:25,,75.00
+CNCFE23216308,CNCFA23238936,Alan,Turing,alan.turing@turingml.ai,,TuringML,,,Standard,In-person,,Standard,375.00,EUR,5,Turing,alan.turing@turingml.ai,2025-02-03 13:35,,75.00
+CNCFE23213966,CNCFA23238633,Johann,Gauss,j.gauss@binomial.math,,Binomial LLC,,,Standard,In-person,,Standard,450.00,EUR,6,Gauss,j.gauss@binomial.math,2025-01-31 14:04,,75.00
+CNCFE23224212,CNCFA23243969,Albert,Einstein,albert.einstein@relateive.corp,,Relative,,,Late,In-person,,Late,100.00,EUR,1,Einstein,albert.einstein@relateive.corp,2025-03-11 16:23,,100.00
+CNCFE23216433,CNCFA23239081,John,Nash,jnash@gamenot.math,,GameNot,,,Standard,In-person,,Standard,75.00,EUR,1,Nash,jnash@gamenot.math,2025-02-04 09:50,,75.00
+CNCFE23216308,CNCFA23238936,Stephen,Hawking,stephen.hawking@cosmocorp.space,,Cosmo,,,Standard,In-person,,Standard,375.00,EUR,5,Hawking,stephen.hawking@cosmocorp.space,2025-02-03 13:35,,75.00
+CNCFE23224964,CNCFA23246223,Enrico,Fermi,e.fermi@atom.nucleus,,Nucleus,,,Organizer,In-person,KCD2025ORGANIZER,Organizer,0.00,EUR,1,Fermi,e.fermi@atom.nucleus,2025-03-14 16:19,,0.00
