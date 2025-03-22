@@ -43,17 +43,42 @@ attendee-types:
       - "75.00% - STUDENTKCD75"
       - "100.00% - KCDAMS_LOVES_DODAMS"
       - "100.00% - KCDAMS23_CODAMFRIENDS"
-fonts:
-  - first-name: "fonts/OpenSans-Bold.ttf"
+data:
+  - field: "First Name"
+    font: "fonts/OpenSans-Bold.ttf"
     size: 140
+    position: "100,400"
+    color: "207,19,19"
     style: "capitals"
-  - last-name: "fonts/OpenSans-Bold.ttf"
+  - field: "Last Name"
+    font: "fonts/OpenSans-Bold.ttf"
     size: 80
-    style: "capitals"
-  - title:  "fonts/OpenSans-Regular.ttf"
+    position: "100,600"
+    color: "0,0,0"
+  - field: "Title"
+    font:  "fonts/OpenSans-Regular.ttf"
     size: 70
-  - company: "fonts/OpenSans-Semibold.ttf"
+    position: "50,1050"
+    color: "207,19,19"
+  - field: "Company"
+    font: "fonts/OpenSans-Semibold.ttf"
     size: 80
-  - attendee-type: "fonts/OpenSans-Bold.ttf"
+    position: "50,1150"
+    color: "20,206,219"
+fonts:
+  - field: "attendee-type"
+    font: "fonts/OpenSans-Bold.ttf"
     size: 140
+    position: "270,1610"
+    color: "255,255,255"
     style: "capitals"
+pre-order-data-extend:
+  - field: "Company/Organization"
+    extends: "Company"
+pre-order-data:
+  - field: "Job Title"
+    font: "fonts/OpenSans-Regular.ttf"
+    size: 50
+    style: "capitals"
+    position: "100, 700"
+    color: "207,19,19"
