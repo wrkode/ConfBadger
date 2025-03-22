@@ -43,4 +43,17 @@ attendee-types:
       - "75.00% - STUDENTKCD75"
       - "100.00% - KCDAMS_LOVES_DODAMS"
       - "100.00% - KCDAMS23_CODAMFRIENDS"
-
+fonts:
+  - first-name: "fonts/OpenSans-Bold.ttf"
+    size: 140
+    style: "capitals"
+  - last-name: "fonts/OpenSans-Bold.ttf"
+    size: 80
+    style: "capitals"
+  - title:  "fonts/OpenSans-Regular.ttf"
+    size: 70
+  - company: "fonts/OpenSans-Semibold.ttf"
+    size: 80
+  - attendee-type: "fonts/OpenSans-Bold.ttf"
+    size: 140
+    style: "capitals"

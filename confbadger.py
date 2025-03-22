@@ -14,6 +14,12 @@ font = ImageFont.truetype("fonts/OpenSans-Bold.ttf", 140)
 font2 = ImageFont.truetype("fonts/OpenSans-Regular.ttf", 70)
 font3 = ImageFont.truetype("fonts/OpenSans-Semibold.ttf", 80)
 
+font_first_name = None
+font_last_name = None
+font_title = None
+font_company = None
+font_attendee_type = None
+
 def main():
 
     logging.basicConfig(
@@ -62,6 +68,13 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
     with open(config_file, 'r') as f:
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
 
+# loading fonts, let's use a safe default option for all the fonts
+    font_first_name = load_font("first-name", config_data)
+    font_last_name = load_font("last-name", config_data)
+    font_title = load_font("title", config_data)
+    font_company = load_font("company", config_data)
+
+
     df = read_data_file(data_file)
     
     for index, values in df.iterrows():
@@ -108,13 +121,18 @@ END:VCARD'''
         # starting at coordinates (70, 1300)
         img_base.paste(img_qcode, (70, 1300))
         
+
         upperName = firstname.upper()
+        first_name = build_text(firstname, "first-name", config_data)
+        last_name = build_text(lastname, "last-name", config_data)
+        title = build_text(title, "title", config_data)
+        company = build_text(company, "company", config_data)
 
         draw = ImageDraw.Draw(img_base)
-        draw.text((100,400), f"{upperName}",(207,19,19),font=font)
-        draw.text((100,600), f"{lastname}",(0,0,0),font=font2)
-        draw.text((50,1050), f"{title}",(207,19,19),font=font2)
-        draw.text((50,1150), f"{company}", (20,206,219),font=font3)
+        draw.text((100,400), f"{first_name}",(207,19,19),font=font_first_name)
+        draw.text((100,600), f"{last_name}",(0,0,0),font=font_last_name)
+        draw.text((50,1050), f"{title}",(207,19,19),font=font_title)
+        draw.text((50,1150), f"{company}", (20,206,219),font=font_company)
 
         attendee_type = "ATTENDEE"
         for attendee in config_data["attendee-types"]:
@@ -143,6 +161,27 @@ def read_data_file(csv_file):
                 else:  # Numeric columns (int, float)
                         df[column] = df[column].fillna(0)
         return df
+
+def load_font(font_type, config_data):
+        conf = next((item for item in config_data["fonts"] if font_type in item), {})
+        font_file = conf.get(font_type)
+        size = conf.get("size")
+        logger = logging.getLogger(__name__)
+        logger.debug(f"For {font_type} loading font {font_file} with size {size}.")
+        font = None
+        try:
+                font = ImageFont.truetype(font_file, size)
+        except OSError:
+                logger.debug(f"Font file ({font_file}) not found, using defaults.")
+                font = ImageFont.load_default()
+        return font
+
+def build_text(text, font_type, config_data):
+        conf = next((item for item in config_data["fonts"] if font_type in item), {})
+        if conf.get("style", "default") == "capitals":
+              return text.upper()
+        else:
+              return text
 
 if __name__ == "__main__":
     main()
