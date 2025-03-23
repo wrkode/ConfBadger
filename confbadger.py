@@ -59,6 +59,7 @@ def main():
     logger.debug(f"Save path file is {save_path}")
     logger.debug(f"Template is {template}")
     logger.debug(f"Config file is {config_file}")
+    logger.debug(f"Pre order data {pre_order_data}")
 
     createBadge(template,
                 save_path,
@@ -80,7 +81,7 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
 
     df = read_data_file(data_file)
     #logger.debug(f"Df pre merge: {df.columns}")
-    if pre_order_data and ("pre-order-data" in config_data):
+    if pre_order_data and ("pre-order-data-extend" in config_data):
         df_pre_order = read_data_file(pre_order_data)
         #logger.debug(f"Df pre pre merge: {df_pre_order.columns}")
         df = df.merge(df_pre_order, left_on='Order number', right_on='Order Number', suffixes=('', '_pre_order'))
@@ -151,16 +152,17 @@ END:VCARD'''
                         draw_text(draw, text, item)
 
         attendee_type = "attendee"
+        color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
         for attendee in config_data["attendee-types"]:
                 if ticket_title in attendee["ticket-titles"]:
                         logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
                         attendee_type = attendee["name"]
-        draw.line((0,1750, 1230,1750), (247,106,5), width=220)
+                        color = str_to_tuple(attendee["color"])
+        
+        draw.line((0,1750, 1230,1750), color, width=220)
         
         item = next((item for item in config_data["fonts"] if item.get("field") == "attendee-type"), None)
         draw_text(draw, attendee_type, item)
-#        draw.text((270,1610), attendee_type, (255,255,255), font=font)
-
         img_base.save(f"badges/{lastname}_{firstname}_{order_number}.pdf")
 
 def read_data_file(csv_file):
