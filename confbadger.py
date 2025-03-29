@@ -114,9 +114,12 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
         checkin_date            = values["Checkin Date (UTC)"]
         ticket_price_paid       = values["Ticket Price Paid"]
 
-               
+        ImageFile.LOAD_TRUNCATED_IMAGES = True
+        img_base = Image.open(template).convert("RGB")
 
-        data = f'''BEGIN:VCARD
+        #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
+        if config_data["qr-code"]["status"]:
+                data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
 FN:{lastname}+{firstname}
 TITLE:{title}
@@ -125,20 +128,18 @@ ORG:{company}
 VERSION:3.0
 END:VCARD'''
 
-        #logger.debug(data)
+                #logger.debug(data)
 
-        qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
-        qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale="4")
-
-        ImageFile.LOAD_TRUNCATED_IMAGES = True
-        img_base = Image.open(template).convert("RGB")
-          
-        # Opening the secondary image (overlay image)
-        img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order_number}.png").convert("RGB")
-          
-        # Pasting qrcode image on top of teamplate image 
-        # starting at coordinates (70, 1300)
-        img_base.paste(img_qcode, (70, 1300))
+                qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
+                qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale="4")
+                
+                # Opening the secondary image (overlay image)
+                img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order_number}.png").convert("RGB")
+                
+                #logger.debug(f'QR Code position: {config_data["qr-code"]["position"]}')
+                # Pasting qrcode image on top of teamplate image 
+                # starting at coordinates from the position conf parameter
+                img_base.paste(img_qcode, str_to_tuple(config_data["qr-code"]["position"]))
 
         draw = ImageDraw.Draw(img_base)
         for item in config_data.get("data", []):

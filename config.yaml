@@ -2,9 +2,11 @@
 
 attendee-types:
   - name: "Speaker"
+    color: "211, 165, 255"
     ticket-titles:
       - "100.00% - KCDNL2023SPKR"
   - name: "Sponsor"
+    color: "0, 152, 254"
     ticket-titles:
       - "100.00% - KCDAMS23_MULTILAYER_FREE_RRTFS"
       - "100.00% - KCDAMS23_AVISI_FREE_YUHTG"
@@ -31,18 +33,25 @@ attendee-types:
       - "100.00% - KCDAMS23_EDGELESS_FREE_HUGYF"
 
   - name: "Organizer"
+    color: "255, 109, 10"
     ticket-titles:
       - "100.00% - KCDAMS23_ORGANIZERS_42"
   - name: "Vip"
+    color: "255, 109, 10"
     ticket-titles:
       - "100.00% - KCDAMS23-WILLIAMFRIENDS"
       - "100.00% - KCDAMS_LOVES_DODAMS"
       - "100.00% - KCDAMS23-ANDYFRIENDS"
   - name: "Student"
+    color: "159, 219, 255"
     ticket-titles:
       - "75.00% - STUDENTKCD75"
       - "100.00% - KCDAMS_LOVES_DODAMS"
       - "100.00% - KCDAMS23_CODAMFRIENDS"
+  - name: "Attendee"
+    color: "159, 219, 255"
+    ticket-titles:
+      - "None"
 data:
   - field: "First Name"
     font: "fonts/OpenSans-Bold.ttf"
@@ -82,3 +91,6 @@ pre-order-data:
     style: "capitals"
     position: "100, 700"
     color: "207,19,19"
+qr-code:
+  status: false
+  position: "70, 1300"
