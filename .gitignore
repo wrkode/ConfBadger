@@ -44,7 +44,9 @@ Thumbs.db
 # Project specific
 *.pdf
 *.csv
+*.png
 !data.csv
+!data-pre-order.csv
 codes/*.png
 badges/*.pdf
 
