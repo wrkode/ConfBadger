@@ -30,6 +30,7 @@ ENV/
 .vscode/
 *.swp
 *.swo
+*.code-workspace
 
 # OS
 .DS_Store
@@ -46,6 +47,8 @@ Thumbs.db
 *.png
 !data.csv
 !data-pre-order.csv
+codes/*.png
+badges/*.pdf
 
 # Node
 node_modules/
