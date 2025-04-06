@@ -56,6 +56,11 @@ the text element should be capitlaized. If the value is `"capitals"` then capita
 Text elements supproted: `first-name`: first name, `last-name`: last name, `title`: title, `company`: company,
 `attendee-type`: attendee type. 
 
+### QR code settings
+
+With the `status` parameter of the `qr-code` section it is possible to define what data is put to the QR code.
+"vcard" adds the name, email and company of the participant to the QR code. "hash" adds the Order numbers only.  
+
 ### Customize the code 
 #### Fonts
 

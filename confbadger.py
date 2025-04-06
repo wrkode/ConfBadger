@@ -39,6 +39,8 @@ def main():
                             help='Config file. Default is config.yaml.')
     parser.add_argument('--pre-order-data',
                             help='Optional data file of the Pre order form from Bevy. To utilize information form here add a pre-order-data section to config.yaml')
+    parser.add_argument('--results-orders',
+                            help='Scan sesults order list. ConfBadger produces a csv file of the results based on this.')
     parser.add_argument('--debug', action="store_true",
                             help='Print debug logs.')
     args = parser.parse_args()
@@ -61,6 +63,15 @@ def main():
     logger.debug(f"Config file is {config_file}")
     logger.debug(f"Pre order data {pre_order_data}")
 
+    if args.results_orders:
+           logger.debug(f"Order number list result file received ({args.results_orders})")
+           df_orders = get_data_from_order_numbers(args.results_orders,
+                                                   data_file,
+                                                   pre_order_data,
+                                                   config_file)
+           sys.exit(0)
+
+            
     createBadge(template,
                 save_path,
                 data_file,
@@ -78,18 +89,7 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
 
     with open(config_file, 'r') as f:
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
-
-    df = read_data_file(data_file)
-    #logger.debug(f"Df pre merge: {df.columns}")
-    if pre_order_data and ("pre-order-data-extend" in config_data):
-        df_pre_order = read_data_file(pre_order_data)
-        #logger.debug(f"Df pre pre merge: {df_pre_order.columns}")
-        df = df.merge(df_pre_order, left_on='Order number', right_on='Order Number', suffixes=('', '_pre_order'))
-
-        fields_with_extends = [(item['field'], item['extends']) for item in config_data['pre-order-data-extend']]
-        for field in fields_with_extends:
-                logger.debug(f"Extending {field[1]} with {field[0]}")
-                df.loc[df[field[1]] == '', field[1]] = df[field[0]]
+    df = read_and_extend_data(data_file, pre_order_data, config_data)
 
     #logger.debug(f"Df post merge: {df.columns}")
     for index, values in df.iterrows():
@@ -118,7 +118,9 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
         img_base = Image.open(template).convert("RGB")
 
         #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
-        if config_data["qr-code"]["status"]:
+        add_qr = False
+        if config_data["qr-code"]["status"] == "vcard":
+                add_qr = True
                 data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
 FN:{lastname}+{firstname}
@@ -127,11 +129,17 @@ EMAIL;WORK;INTERNET:{email}
 ORG:{company}
 VERSION:3.0
 END:VCARD'''
+                scale="4"
+        elif config_data["qr-code"]["status"] == "hash":
+                add_qr = True
+                data = f'{order_number}'
+                scale="10"
+        if add_qr:
 
                 #logger.debug(data)
 
                 qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
-                qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale="4")
+                qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale=scale)
                 
                 # Opening the secondary image (overlay image)
                 img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order_number}.png").convert("RGB")
@@ -215,6 +223,38 @@ def build_text(text, font_type, config_data):
 
 def str_to_tuple(position):
        return tuple(map(int, position.split(",")))
+
+def read_and_extend_data(data_file, pre_order_data, config_data):
+        logger = logging.getLogger(__name__)
+        df = read_data_file(data_file)
+        #logger.debug(f"Df pre merge: {df.columns}")
+        if pre_order_data and ("pre-order-data-extend" in config_data):
+                df_pre_order = read_data_file(pre_order_data)
+                #logger.debug(f"Df pre pre merge: {df_pre_order.columns}")
+                df = df.merge(df_pre_order, left_on='Order number', right_on='Order Number', suffixes=('', '_pre_order'))
+
+                fields_with_extends = [(item['field'], item['extends']) for item in config_data['pre-order-data-extend']]
+                for field in fields_with_extends:
+                        logger.debug(f"Extending {field[1]} with {field[0]}")
+                        df.loc[df[field[1]] == '', field[1]] = df[field[0]]
+        return df
+
+def get_data_from_order_numbers(order_numbers = "post-scan-order-numbers.csv",
+                                data_file="data.csv",
+                                pre_order_data = None,
+                                config_file = "config.yaml"):
+        logger = logging.getLogger(__name__)
+        logger.debug(f"Get data from order numbers invoked (order_numbers: {order_numbers}, data_file: {data_file}, pre_order_data: {pre_order_data})")
+        with open(config_file, 'r') as f:
+                config_data = yaml.load(f, Loader=yaml.SafeLoader)
+        df_participants = read_and_extend_data(data_file, pre_order_data, config_data)
+        df_orders = pd.read_csv(order_numbers, header=None, names=["Order number"])
+
+        df_filtered = df_participants[df_participants['Order number'].isin(df_orders['Order number'])][["Order number", "First Name", "Last Name", "Email", "Company", "Title"]]
+        
+        logger.debug(f"DF filtered: {df_filtered}")
+        return df_filtered
+
 
 if __name__ == "__main__":
     main()
