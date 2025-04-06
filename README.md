@@ -46,7 +46,15 @@ Configuration is stored in a yaml file, which is config.yaml by default.
 #### Attendee types
 
 Create one list item in `attendee-types` for each attendee type. Each list item should have a `name` which will be
-printed to the badge and a `ticket-titles` which is a list of ticket types from the data file.  
+printed to the badge and a `ticket-titles` which is a list of ticket types from the data file.
+
+### Font settings
+
+Each text element has an object in the `fonts` list. The name of the text element defines the font used. If the font
+file is not found a default font will be used. `size` defines the size of the text element in points. `syle` defines if 
+the text element should be capitlaized. If the value is `"capitals"` then capitalized otherwise not.
+Text elements supproted: `first-name`: first name, `last-name`: last name, `title`: title, `company`: company,
+`attendee-type`: attendee type. 
 
 ### Customize the code 
 #### Fonts
