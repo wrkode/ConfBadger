@@ -6,6 +6,7 @@ from typing import Optional
 import shutil
 from confbadger import createBadge, read_data_file, get_data_from_order_numbers
 import logging
+import glob
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
@@ -24,6 +25,14 @@ app.add_middleware(
 os.makedirs("badges", exist_ok=True)
 os.makedirs("codes", exist_ok=True)
 os.makedirs("temp", exist_ok=True)
+
+@app.on_event("startup")
+async def clean_temp_folder():
+    for file_path in glob.glob("temp/*.csv"):
+        try:
+            os.remove(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}: {e}")
 
 @app.post("/upload-csv")
 async def upload_csv(file: UploadFile = File(...)):
@@ -112,8 +121,9 @@ async def upload_csv(file: UploadFile = File(...)):
     temp_file_path = f"temp/{file.filename}"
     with open(temp_file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+    shutil.move(temp_file_path, "post-scan-order-numbers.csv")
     df = get_data_from_order_numbers()
-    os.remove(temp_file_path)
+    os.remove("post-scan-order-numbers.csv")
     return {"participantdata": df.to_dict(orient="records")}
 
 

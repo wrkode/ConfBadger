@@ -69,6 +69,8 @@ def main():
                                                    data_file,
                                                    pre_order_data,
                                                    config_file)
+           
+           df_orders.to_csv(sys.stdout, index=False)
            sys.exit(0)
 
             
@@ -119,7 +121,10 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
 
         #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
         add_qr = False
-        if config_data["qr-code"]["status"] == "vcard":
+        # Preserving default behaviour. If qr-code or the status is not defined the VCARD is added.        
+        if (not "qr-code" in config_data) or config_data["qr-code"]["status"] == "false":
+           add_qr = False    
+        elif (not "status" in config_data["qr-code"]) or (config_data["qr-code"]["status"] == "vcard"):
                 add_qr = True
                 data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
@@ -250,8 +255,17 @@ def get_data_from_order_numbers(order_numbers = "post-scan-order-numbers.csv",
         df_participants = read_and_extend_data(data_file, pre_order_data, config_data)
         df_orders = pd.read_csv(order_numbers, header=None, names=["Order number"])
 
+        df_participants["Order number"] = df_participants["Order number"].astype(str).str.strip()
+        df_orders["Order number"] = df_orders["Order number"].astype(str).str.strip()
+
+
+        logger.debug(f'Duplicates: {df_participants["Order number"].duplicated().sum()}')
+        logger.debug(f"DF orders: {df_orders}")
+
         df_filtered = df_participants[df_participants['Order number'].isin(df_orders['Order number'])][["Order number", "First Name", "Last Name", "Email", "Company", "Title"]]
         
+        #df_filtered = df_orders.merge(df_participants, on="Order number", how="left")[["Order number", "First Name", "Last Name", "Email", "Company", "Title"]]
+
         logger.debug(f"DF filtered: {df_filtered}")
         return df_filtered
 

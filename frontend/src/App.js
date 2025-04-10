@@ -94,7 +94,7 @@ function App() {
     }
   };
 
-  const handleFResultileUpload = async (event) => {
+  const handleFResultFileUpload = async (event) => {
     const resultFile = event.target.files[0];
     if (!resultFile) return;
 
@@ -110,6 +110,7 @@ function App() {
         },
       });
       setSuccess('Result file uploaded!');
+      console.log("Participant data received:", response.data.participantdata);
       setParticipantData(response.data.participantdata)
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to upload file');
@@ -363,10 +364,10 @@ function App() {
                 type="file"
                 hidden
                 accept=".csv"
-                onChange={handleFResultileUpload}
+                onChange={handleFResultFileUpload}
               />
             </Button>
-            {file && (
+            {resultFile && (
               <Typography variant="body2" sx={{ mt: 1 }}>
                 Selected file: {resultFile.name}
               </Typography>

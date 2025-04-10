@@ -59,7 +59,8 @@ Text elements supproted: `first-name`: first name, `last-name`: last name, `titl
 ### QR code settings
 
 With the `status` parameter of the `qr-code` section it is possible to define what data is put to the QR code.
-"vcard" adds the name, email and company of the participant to the QR code. "hash" adds the Order numbers only.  
+"vcard" adds the name, email and company of the participant as a VCARD to the QR code. "hash" adds the Order numbers only. "false" will not add the QR code at all. 
+If the `qr-code` or the `status` fields are omitted the VCARD will be added.
 
 ### Customize the code 
 #### Fonts
