@@ -167,17 +167,49 @@ END:VCARD'''
 
         attendee_type = "attendee"
         color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
+        background_size = next((item["background-size"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None)
         for attendee in config_data["attendee-types"]:
                 if ticket_title in attendee["ticket-titles"]:
                         logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
                         attendee_type = attendee["name"]
                         color = str_to_tuple(attendee["color"])
-        
-        draw.line((0,1750, 1230,1750), color, width=220)
+
+        width, height = img_base.size
+
+        draw.line((0, height - (background_size / 2),
+                   width, height-(background_size / 2)),
+                   color,
+                   width=background_size)
         
         item = next((item for item in config_data["fonts"] if item.get("field") == "attendee-type"), None)
         draw_text(draw, attendee_type, item)
-        img_base.save(f"badges/{lastname}_{firstname}_{order_number}.pdf")
+
+        size = config_data.get("size")
+
+        # Check if width-mm and height-mm exist
+        if isinstance(size, dict) and "width-mm" in size and "height-mm" in size:
+                out_width_px = int(config_data["size"]["width-mm"] / 10 / 2.54 * 300)
+                out_heiht_px = int(config_data["size"]["height-mm"] / 10 / 2.54 * 300)
+
+                width_ratio = out_width_px / width
+                height_ratio = out_heiht_px / height
+                scale_factor = min(width_ratio, height_ratio)
+                dpi = img_base.info.get("dpi", (1, 1))
+                width_cm = (width / dpi[0]) * 2.54
+                height_cm = (height / dpi[1]) * 2.54
+                logger.debug(f"Original image size {width}/{height}, {width_cm}/{height_cm} cm, dpi {dpi}")
+                if width_ratio != 1 and height_ratio != 1:
+                        new_width = int(width * scale_factor)
+                        new_height = int(height * scale_factor)
+                        logger.debug(f"Resizing from {width}/{height} to {new_width}/{new_height}")
+                        img_resized = img_base.resize((new_width, new_height), Image.LANCZOS)
+                else:
+                        img_resized = img_base
+                        logger.debug("Configured image size is the same as the base image.")
+        else:
+               img_resized = img_base
+               logger.debug("There is no size config, original base image size is used")
+        img_resized.save(f"badges/{lastname}_{firstname}_{order_number}.pdf", dpi=(300, 300))
 
 def read_data_file(csv_file):
         logger = logging.getLogger(__name__)
