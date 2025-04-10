@@ -152,8 +152,8 @@ function App() {
 
   const handleDownloadBadge = async (attendee) => {
     // Convert Order # to string and remove decimal places
-    const order = String(attendee['Order number']).split('.')[0];
-    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${order}.pdf`;
+    const ticket_number = String(attendee['Ticket number']).split('.')[0];
+    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${ticket_number}.pdf`;
     window.open(`${API_BASE_URL}/badge/${badgeFilename}`, '_blank');
   };
 

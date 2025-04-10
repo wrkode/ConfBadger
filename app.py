@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, JSONResponse
 import os
 from typing import Optional
 import shutil
-from confbadger import createBadge, read_data_file, get_data_from_order_numbers
+from confbadger import createBadge, read_data_file, get_data_from_ticket_numbers
 import logging
 import glob
 
@@ -47,7 +47,7 @@ async def upload_csv(file: UploadFile = File(...)):
     try:
         # Read the CSV to validate it
         df = read_data_file(temp_file_path)
-        required_columns = ["Order number", "First Name", "Last Name", "Email", "Company", "Title", "Ticket title"]
+        required_columns = ["Ticket number", "First Name", "Last Name", "Email", "Company", "Title", "Ticket title"]
         
         if not all(col in df.columns for col in required_columns):
             raise HTTPException(status_code=400, detail="CSV must contain all required columns")
@@ -121,9 +121,9 @@ async def upload_csv(file: UploadFile = File(...)):
     temp_file_path = f"temp/{file.filename}"
     with open(temp_file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    shutil.move(temp_file_path, "post-scan-order-numbers.csv")
-    df = get_data_from_order_numbers()
-    os.remove("post-scan-order-numbers.csv")
+    shutil.move(temp_file_path, "post-scan-ticket-numbers.csv")
+    df = get_data_from_ticket_numbers()
+    os.remove("post-scan-ticket-numbers.csv")
     return {"participantdata": df.to_dict(orient="records")}
 
 
