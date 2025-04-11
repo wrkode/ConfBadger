@@ -4,8 +4,9 @@ from fastapi.responses import FileResponse, JSONResponse
 import os
 from typing import Optional
 import shutil
-from confbadger import createBadge, read_data_file
+from confbadger import createBadge, read_data_file, get_data_from_ticket_numbers
 import logging
+import glob
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn")
@@ -25,6 +26,14 @@ os.makedirs("badges", exist_ok=True)
 os.makedirs("codes", exist_ok=True)
 os.makedirs("temp", exist_ok=True)
 
+@app.on_event("startup")
+async def clean_temp_folder():
+    for file_path in glob.glob("temp/*.csv"):
+        try:
+            os.remove(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}: {e}")
+
 @app.post("/upload-csv")
 async def upload_csv(file: UploadFile = File(...)):
     if not file.filename.endswith('.csv'):
@@ -38,7 +47,7 @@ async def upload_csv(file: UploadFile = File(...)):
     try:
         # Read the CSV to validate it
         df = read_data_file(temp_file_path)
-        required_columns = ["Order number", "First Name", "Last Name", "Email", "Company", "Title", "Ticket title"]
+        required_columns = ["Ticket number", "First Name", "Last Name", "Email", "Company", "Title", "Ticket title"]
         
         if not all(col in df.columns for col in required_columns):
             raise HTTPException(status_code=400, detail="CSV must contain all required columns")
@@ -63,7 +72,6 @@ async def search_attendees(
     ticket_type: Optional[str] = None
 ):
     try:
-        print("In search")
         df = read_data_file("data.csv")
         # Apply filters
         if name:
@@ -103,6 +111,21 @@ async def list_badges():
         return {"badges": badges}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/upload-results-hash")
+async def upload_csv(file: UploadFile = File(...)):
+    if not file.filename.endswith('.csv'):
+        raise HTTPException(status_code=400, detail="File must be a CSV")
+    
+    # Save the uploaded file temporarily
+    temp_file_path = f"temp/{file.filename}"
+    with open(temp_file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    shutil.move(temp_file_path, "post-scan-ticket-numbers.csv")
+    df = get_data_from_ticket_numbers()
+    os.remove("post-scan-ticket-numbers.csv")
+    return {"participantdata": df.to_dict(orient="records")}
+
 
 if __name__ == "__main__":
     import uvicorn

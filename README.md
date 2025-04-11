@@ -41,7 +41,7 @@ npm install
 
 ### Config file
 
-Configuration is stored in a yaml file, which is config.yaml by default.
+Configuration is stored in a yaml file, which is `config.yaml` by default.
 
 #### Attendee types
 
@@ -55,6 +55,21 @@ file is not found a default font will be used. `size` defines the size of the te
 the text element should be capitlaized. If the value is `"capitals"` then capitalized otherwise not.
 Text elements supproted: `first-name`: first name, `last-name`: last name, `title`: title, `company`: company,
 `attendee-type`: attendee type. 
+
+### Labels
+
+In the `labels` section any number of text labels can be defined. The `text` attribute of the label is the text, `font`
+defines the font with a refernce to the ttf file, `size` defines the size in points, `position` defines the coordinates
+of the top left corner of the label, `color` defines the R, G and B values of the text color, `style` defines if the
+text should be capitalized with "capitals".
+
+### QR code settings
+
+With the `status` parameter of the `qr-code` section it is possible to define what data is put to the QR code.
+"vcard" adds the name, email and company of the participant as a VCARD to the QR code. "hash" adds the Order numbers
+only. "false" will not add the QR code at all. 
+If the whole `qr-code` section is omitted no QR code will be added If the `status` fields are omitted the VCARD will be
+added.
 
 ### Customize the code 
 #### Fonts
