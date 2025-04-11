@@ -92,5 +92,5 @@ pre-order-data:
     position: "100, 700"
     color: "207,19,19"
 qr-code:
-  status: "hash"
+  status: "vcard"
   position: "70, 1300"

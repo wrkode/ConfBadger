@@ -39,7 +39,7 @@ def main():
                             help='Config file. Default is config.yaml.')
     parser.add_argument('--pre-order-data',
                             help='Optional data file of the Pre order form from Bevy. To utilize information form here add a pre-order-data section to config.yaml')
-    parser.add_argument('--results-orders',
+    parser.add_argument('--results',
                             help='Scan sesults order list. ConfBadger produces a csv file of the results based on this.')
     parser.add_argument('--debug', action="store_true",
                             help='Print debug logs.')
@@ -63,12 +63,14 @@ def main():
     logger.debug(f"Config file is {config_file}")
     logger.debug(f"Pre order data {pre_order_data}")
 
-    if args.results_orders:
-           logger.debug(f"Order number list result file received ({args.results_orders})")
-           df_orders = get_data_from_order_numbers(args.results_orders,
-                                                   data_file,
-                                                   pre_order_data,
-                                                   config_file)
+    if args.results:
+           logger.debug(f"Order number list result file received ({args.results})")
+           df_orders = get_data_from_ticket_numbers(args.results,
+                                                    data_file,
+                                                    pre_order_data,
+                                                    config_file)
+           
+           df_orders.to_csv(sys.stdout, index=False)
            sys.exit(0)
 
             
@@ -119,7 +121,10 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
 
         #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
         add_qr = False
-        if config_data["qr-code"]["status"] == "vcard":
+        # Preserving default behaviour. If qr-code or the status is not defined the VCARD is added.        
+        if (not "qr-code" in config_data) or config_data["qr-code"]["status"] == "false":
+           add_qr = False    
+        elif (not "status" in config_data["qr-code"]) or (config_data["qr-code"]["status"] == "vcard"):
                 add_qr = True
                 data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
@@ -132,17 +137,17 @@ END:VCARD'''
                 scale="4"
         elif config_data["qr-code"]["status"] == "hash":
                 add_qr = True
-                data = f'{order_number}'
+                data = f'{ticket_number}'
                 scale="10"
         if add_qr:
 
                 #logger.debug(data)
 
                 qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
-                qrcode.png(f"{save_path}/{lastname}_{firstname}_{order_number}.png", scale=scale)
+                qrcode.png(f"{save_path}/{lastname}_{firstname}_{ticket_number}.png", scale=scale)
                 
                 # Opening the secondary image (overlay image)
-                img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{order_number}.png").convert("RGB")
+                img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{ticket_number}.png").convert("RGB")
                 
                 #logger.debug(f'QR Code position: {config_data["qr-code"]["position"]}')
                 # Pasting qrcode image on top of teamplate image 
@@ -244,19 +249,26 @@ def read_and_extend_data(data_file, pre_order_data, config_data):
                         df.loc[df[field[1]] == '', field[1]] = df[field[0]]
         return df
 
-def get_data_from_order_numbers(order_numbers = "post-scan-order-numbers.csv",
-                                data_file="data.csv",
-                                pre_order_data = None,
-                                config_file = "config.yaml"):
+def get_data_from_ticket_numbers(ticket_numbers = "post-scan-ticket-numbers.csv",
+                                 data_file="data.csv",
+                                 pre_order_data = None,
+                                 config_file = "config.yaml"):
         logger = logging.getLogger(__name__)
-        logger.debug(f"Get data from order numbers invoked (order_numbers: {order_numbers}, data_file: {data_file}, pre_order_data: {pre_order_data})")
+        logger.debug(f"Get data from ticket numbers invoked (order_numbers: {ticket_numbers}, data_file: {data_file}, pre_order_data: {pre_order_data})")
         with open(config_file, 'r') as f:
                 config_data = yaml.load(f, Loader=yaml.SafeLoader)
         df_participants = read_and_extend_data(data_file, pre_order_data, config_data)
-        df_orders = pd.read_csv(order_numbers, header=None, names=["Order number"])
+        df_tickets = pd.read_csv(ticket_numbers, header=None, names=["Ticket number"])
 
-        df_filtered = df_participants[df_participants['Order number'].isin(df_orders['Order number'])][["Order number", "First Name", "Last Name", "Email", "Company", "Title"]]
-        
+        df_participants["Ticket number"] = df_participants["Ticket number"].astype(str).str.strip()
+        df_tickets["Ticket number"] = df_tickets["Ticket number"].astype(str).str.strip()
+
+
+        logger.debug(f'Duplicates: {df_participants["Ticket number"].duplicated().sum()}')
+        logger.debug(f"DF tickets: {df_tickets}")
+
+        df_filtered = df_participants[df_participants['Ticket number'].isin(df_tickets['Ticket number'])][["Ticket number", "First Name", "Last Name", "Email", "Company", "Title"]]
+        df_filtered = df_filtered.drop_duplicates(subset=["Ticket number"])
         logger.debug(f"DF filtered: {df_filtered}")
         return df_filtered
 
