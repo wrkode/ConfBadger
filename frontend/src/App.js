@@ -14,6 +14,7 @@ import {
   Alert,
   IconButton,
   InputAdornment,
+  Tooltip,
 } from '@mui/material';
 import {
   Search as SearchIcon,
@@ -21,6 +22,7 @@ import {
   Download as DownloadIcon,
   Preview as PreviewIcon,
   Clear as ClearIcon,
+  ContentCopy as CopyIcon,
 } from '@mui/icons-material';
 import axios from 'axios';
 
@@ -28,6 +30,7 @@ const API_BASE_URL = 'http://localhost:8000';
 
 function App() {
   const [file, setFile] = useState(null);
+  const [resultFile, setResultFile] = useState(null);
   const [searchParams, setSearchParams] = useState({
     name: '',
     title: '',
@@ -36,6 +39,7 @@ function App() {
   });
   const [attendees, setAttendees] = useState([]);
   const [badges, setBadges] = useState([]);
+  const [participantdata, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -90,6 +94,31 @@ function App() {
     }
   };
 
+  const handleFResultFileUpload = async (event) => {
+    const resultFile = event.target.files[0];
+    if (!resultFile) return;
+
+    setResultFile(resultFile);
+    setParticipantData([])
+    const formData = new FormData();
+    formData.append('file', resultFile);
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/upload-results-hash`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setSuccess('Result file uploaded!');
+      console.log("Participant data received:", response.data.participantdata);
+      setParticipantData(response.data.participantdata)
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to upload file');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
@@ -116,10 +145,15 @@ function App() {
     setAttendees([]);
   };
 
+  const handleClearCSV = () => {
+    setResultFile(null)
+    setParticipantData([]);
+  };
+
   const handleDownloadBadge = async (attendee) => {
     // Convert Order # to string and remove decimal places
-    const order = String(attendee['Order number']).split('.')[0];
-    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${order}.pdf`;
+    const ticket_number = String(attendee['Ticket number']).split('.')[0];
+    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${ticket_number}.pdf`;
     window.open(`${API_BASE_URL}/badge/${badgeFilename}`, '_blank');
   };
 
@@ -316,6 +350,79 @@ function App() {
           </Grid>
         ))}
       </Grid>
+      <Paper sx={{ p: 3, mb: 4 }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              component="label"
+              startIcon={<UploadIcon />}
+              fullWidth
+            >
+              Upload Results File
+              <input
+                type="file"
+                hidden
+                accept=".csv"
+                onChange={handleFResultFileUpload}
+              />
+            </Button>
+            {resultFile && (
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                Selected file: {resultFile.name}
+              </Typography>
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="outlined"
+              startIcon={<ClearIcon />}
+              onClick={handleClearCSV}
+              fullWidth
+            >
+              Clear CSV
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+        {participantdata.length > 0 && (
+          <Paper sx={{ p: 2, mt: 4 }}>
+            <Typography variant="h6" gutterBottom>
+              Raw CSV Output
+            </Typography>
+            <Tooltip title="Copy to clipboard">
+              <IconButton
+                onClick={() => {
+                  const csvString = [
+                    Object.keys(participantdata[0]).join(','),
+                    ...participantdata.map((row) => Object.values(row).join(','))
+                  ].join('\n');
+                  navigator.clipboard.writeText(csvString);
+                }}
+              >
+                <CopyIcon />
+              </IconButton>
+            </Tooltip>
+            <Box
+              component="pre"
+              sx={{
+                whiteSpace: 'pre-wrap',
+                fontFamily: 'monospace',
+                background: '#f5f5f5',
+                padding: 2,
+                borderRadius: 1,
+                overflowX: 'auto',
+              }}
+            >
+              {[
+                Object.keys(participantdata[0]).join(','), // header
+                ...participantdata.map((row) => Object.values(row).join(',')) // rows
+              ].join('\n')}
+            </Box>
+          </Paper>
+        )}
+        </Grid>
+      </Paper>
     </Container>
   );
 }
