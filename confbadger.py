@@ -159,6 +159,11 @@ END:VCARD'''
                #logger.debug(f'Adding item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
                text = f'{values[item.get("field")]}'
                draw_text(draw, text, item)
+        for item in config_data.get("labels", []):
+               #logger.debug(f'Adding item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
+               text = f'{item.get("text")}'
+               draw_text(draw, text, item)
+
         if pre_order_data:
                 for item in config_data.get("pre-order-data", []):
                         #logger.debug(f'Adding extra item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
