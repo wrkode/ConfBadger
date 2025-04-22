@@ -23,7 +23,12 @@ font_attendee_type = None
 def main():
 
     logging.basicConfig(
-            format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            level=logging.INFO,
+            handlers=[
+                        logging.FileHandler("confbadger.log"),  # Save logs to this file
+                        logging.StreamHandler()                 # Also print to the terminal
+            ])
     logger = logging.getLogger(__name__)
     sys.stdout.reconfigure(encoding='utf-8')
 
@@ -118,7 +123,7 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
 
         ImageFile.LOAD_TRUNCATED_IMAGES = True
         img_base = Image.open(template).convert("RGB")
-
+        logger.debug(f"Handling {lastname}, {firstname} , {index}")
         #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
         add_qr = False
         # Preserving default behaviour. If qr-code or the status is not defined the VCARD is added.        
@@ -187,7 +192,7 @@ END:VCARD'''
                    width=background_size)
         
         item = next((item for item in config_data["fonts"] if item.get("field") == "attendee-type"), None)
-        draw_text(draw, attendee_type, item)
+        draw_text(draw, attendee_type, item, image_width=width)
 
         size = config_data.get("size")
 
@@ -213,8 +218,9 @@ END:VCARD'''
                         logger.debug("Configured image size is the same as the base image.")
         else:
                img_resized = img_base
-               logger.debug("There is no size config, original base image size is used")
+               #logger.debug("There is no size config, original base image size is used")
         img_resized.save(f"badges/{lastname}_{firstname}_{order_number}.pdf", dpi=(300, 300))
+        logger.debug(f"Saved {lastname}, {firstname} , {index}")
 
 def read_data_file(csv_file):
         logger = logging.getLogger(__name__)
@@ -247,9 +253,16 @@ def get_font(font_file, size):
                 font = ImageFont.load_default()
         return font
        
-def draw_text(draw, text, item, position=None, color=None):
+def draw_text(draw, text, item, position=None, color=None, image_width=0):
+        logger = logging.getLogger(__name__)
         if not position:
-                position = str_to_tuple(item.get("position"))
+                str_position = tuple(map(str, item.get("position").split(",")))
+                if str_position[0] == "middle" and image_width > 0:
+                        text_width, text_height = draw.textsize(text, font=get_font(item.get("font"), item.get("size")))
+                        x = (image_width - text_width) // 2
+                        position = str_to_tuple(f"{x}, {str_position[1]}")
+                else:
+                        position = str_to_tuple(item.get("position"))
         if not color:
                 color = str_to_tuple(item.get("color"))
         if "capitals" == item.get("style"):
@@ -270,15 +283,36 @@ def read_and_extend_data(data_file, pre_order_data, config_data):
         logger = logging.getLogger(__name__)
         df = read_data_file(data_file)
         #logger.debug(f"Df pre merge: {df.columns}")
+        logger.debug(f"Data dimensions after read: {df.shape}")
         if pre_order_data and ("pre-order-data-extend" in config_data):
                 df_pre_order = read_data_file(pre_order_data)
                 #logger.debug(f"Df pre pre merge: {df_pre_order.columns}")
-                df = df.merge(df_pre_order, left_on='Order number', right_on='Order Number', suffixes=('', '_pre_order'))
-
+                logger.debug(f"Preorder data dimensions after read: {df_pre_order.shape}")
+                merge_suffix = "_pre_order"
+                df['Email'] = df['Email'].str.strip().str.lower()
+                df_pre_order['Email'] = df_pre_order['Email'].str.strip().str.lower()
+                df_pre_order = df_pre_order.drop_duplicates(subset='Email')
+                df_matching = df.merge(df_pre_order, on='Email', how='left', suffixes=('', '_pre_order'))
+                logger.debug(f"Data dimensions after merge: {df_matching.shape}")
+                logger.debug(f"Headers: {df_matching.columns}")
                 fields_with_extends = [(item['field'], item['extends']) for item in config_data['pre-order-data-extend']]
-                for field in fields_with_extends:
-                        logger.debug(f"Extending {field[1]} with {field[0]}")
-                        df.loc[df[field[1]] == '', field[1]] = df[field[0]]
+                for field_src, field_target in fields_with_extends:
+                        logger.debug(f"Extending {field_target} with {field_src}")
+
+                        # Create a mask of matching rows where the target field is empty
+                        mask = (df['Email'].isin(df_matching['Email'])) & (
+                                df[field_target].isna() | (df[field_target] == '')
+                        )
+
+                        # Create a lookup dict from Email to the extension value
+                        lookup = dict(zip(df_matching['Email'], df_matching[field_src]))
+
+                        # Use apply to set the new value only for rows where mask is True
+                        df.loc[mask, field_target] = df.loc[mask, 'Email'].map(lookup)
+
+                        # Fill any remaining NaNs with empty strings
+                        df[field_target] = df[field_target].fillna('')
+        logger.debug(f"Data dimensions after extend: {df.shape}")
         return df
 
 def get_data_from_ticket_numbers(ticket_numbers = "post-scan-ticket-numbers.csv",
