@@ -1,5 +1,4 @@
 ---
-
 attendee-types:
   - name: "Speaker"
     color: "211, 165, 255"
@@ -50,6 +49,7 @@ attendee-types:
       - "100.00% - KCDAMS23_CODAMFRIENDS"
   - name: "Attendee"
     color: "159, 219, 255"
+    backgound-size: 220
     ticket-titles:
       - "None"
 data:
