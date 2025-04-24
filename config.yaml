@@ -49,7 +49,7 @@ attendee-types:
       - "100.00% - KCDAMS23_CODAMFRIENDS"
   - name: "Attendee"
     color: "159, 219, 255"
-    backgound-size: 220
+    background-size: 220
     ticket-titles:
       - "None"
 data:
