@@ -9,6 +9,7 @@ import logging
 import sys
 import yaml
 from PIL import Image, ImageFile, ImageFont, ImageDraw
+import os
 
 font = ImageFont.truetype("fonts/OpenSans-Bold.ttf", 140)
 font2 = ImageFont.truetype("fonts/OpenSans-Regular.ttf", 70)
@@ -86,52 +87,61 @@ def main():
                 pre_order_data)
 
 def createBadge(template = "KCDAMS2023_Badge_Template.png",
-                save_path = "badges",
+                save_path = "codes",
                 data_file = "data.csv",
                 config_file = "config.yaml", 
                 pre_order_data = None):
     
     logger = logging.getLogger(__name__)
-    logger.debug(f"teplate: {template}, save_path: {save_path}, data_file: {data_file}, config_file: {config_file}")
+    logger.debug(f"template: {template}, save_path: {save_path}, data_file: {data_file}, config_file: {config_file}")
 
+    # Ensure both directories exist
+    os.makedirs("badges", exist_ok=True)
+    os.makedirs(save_path, exist_ok=True)
+    
     with open(config_file, 'r') as f:
         config_data = yaml.load(f, Loader=yaml.SafeLoader)
     df = read_and_extend_data(data_file, pre_order_data, config_data)
 
+    # Count of successfully created badges
+    badge_count = 0
+    qr_count = 0
+
     #logger.debug(f"Df post merge: {df.columns}")
     for index, values in df.iterrows():
-        order_number            = values["Order number"]        
-        ticket_number           = values["Ticket number"]
-        firstname               = values["First Name"]
-        lastname                = values["Last Name"]
-        email                   = values["Email"]
-        twitter                 = values["Twitter"]
-        company                 = values["Company"]
-        title                   = values["Title"]
-        featured                = values["Featured"]
-        ticket_title            = values["Ticket title"]
-        ticket_venue            = values["Ticket venue"]
-        access_code             = values["Access code"]
-        price                   = values["Price"]
-        currency                = values["Currency"]
-        number_of_tickets       = values["Number of tickets"]
-        paid_by_name            = values["Paid by (name)"]
-        paid_by_email           = values["Paid by (email)"]
-        paid_date               = values["Paid date (UTC)"]
-        checkin_date            = values["Checkin Date (UTC)"]
-        ticket_price_paid       = values["Ticket Price Paid"]
+        try:
+            order_number            = values["Order number"]        
+            ticket_number           = values["Ticket number"]
+            firstname               = values["First Name"]
+            lastname                = values["Last Name"]
+            email                   = values["Email"]
+            twitter                 = values["Twitter"]
+            company                 = values["Company"]
+            title                   = values["Title"]
+            featured                = values["Featured"]
+            ticket_title            = values["Ticket title"]
+            ticket_venue            = values["Ticket venue"]
+            access_code             = values["Access code"]
+            price                   = values["Price"]
+            currency                = values["Currency"]
+            number_of_tickets       = values["Number of tickets"]
+            paid_by_name            = values["Paid by (name)"]
+            paid_by_email           = values["Paid by (email)"]
+            paid_date               = values["Paid date (UTC)"]
+            checkin_date            = values["Checkin Date (UTC)"]
+            ticket_price_paid       = values["Ticket Price Paid"]
 
-        ImageFile.LOAD_TRUNCATED_IMAGES = True
-        img_base = Image.open(template).convert("RGB")
-        logger.debug(f"Handling {lastname}, {firstname} , {index}")
-        #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
-        add_qr = False
-        # Preserving default behaviour. If qr-code or the status is not defined the VCARD is added.        
-        if (not "qr-code" in config_data) or config_data["qr-code"]["status"] == "false":
-           add_qr = False    
-        elif (not "status" in config_data["qr-code"]) or (config_data["qr-code"]["status"] == "vcard"):
-                add_qr = True
-                data = f'''BEGIN:VCARD
+            ImageFile.LOAD_TRUNCATED_IMAGES = True
+            img_base = Image.open(template).convert("RGB")
+            logger.debug(f"Handling {lastname}, {firstname} , {index}")
+            #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
+            add_qr = False
+            # Preserving default behaviour. If qr-code or the status is not defined the VCARD is added.        
+            if (not "qr-code" in config_data) or config_data["qr-code"]["status"] == "false":
+               add_qr = False    
+            elif (not "status" in config_data["qr-code"]) or (config_data["qr-code"]["status"] == "vcard"):
+                    add_qr = True
+                    data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
 FN:{lastname}+{firstname}
 TITLE:{title}
@@ -139,88 +149,94 @@ EMAIL;WORK;INTERNET:{email}
 ORG:{company}
 VERSION:3.0
 END:VCARD'''
-                scale="4"
-        elif config_data["qr-code"]["status"] == "hash":
-                add_qr = True
-                data = f'{ticket_number}'
-                scale="10"
-        if add_qr:
+                    scale="4"
+            elif config_data["qr-code"]["status"] == "hash":
+                    add_qr = True
+                    data = f'{ticket_number}'
+                    scale="10"
+            if add_qr:
+                    # Create QR code
+                    qr_filename = f"{save_path}/{lastname}_{firstname}_{ticket_number}.png"
+                    qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
+                    qrcode.png(qr_filename, scale=scale)
+                    qr_count += 1
+                    
+                    # Opening the secondary image (overlay image)
+                    img_qcode = Image.open(qr_filename).convert("RGB")
+                    
+                    # Pasting qrcode image on top of template image 
+                    # starting at coordinates from the position conf parameter
+                    img_base.paste(img_qcode, str_to_tuple(config_data["qr-code"]["position"]))
 
-                #logger.debug(data)
+            draw = ImageDraw.Draw(img_base)
+            for item in config_data.get("data", []):
+                   text = f'{values[item.get("field")]}'
+                   draw_text(draw, text, item)
+            for item in config_data.get("labels", []):
+                   text = f'{item.get("text")}'
+                   draw_text(draw, text, item)
 
-                qrcode = pyqrcode.create(unicodedata.normalize('NFKD', data).encode('ascii','ignore').decode('ascii'))
-                qrcode.png(f"{save_path}/{lastname}_{firstname}_{ticket_number}.png", scale=scale)
-                
-                # Opening the secondary image (overlay image)
-                img_qcode = Image.open(f"{save_path}/{lastname}_{firstname}_{ticket_number}.png").convert("RGB")
-                
-                #logger.debug(f'QR Code position: {config_data["qr-code"]["position"]}')
-                # Pasting qrcode image on top of teamplate image 
-                # starting at coordinates from the position conf parameter
-                img_base.paste(img_qcode, str_to_tuple(config_data["qr-code"]["position"]))
+            if pre_order_data:
+                    for item in config_data.get("pre-order-data", []):
+                            text = f'{values[item.get("field")]}'
+                            draw_text(draw, text, item)
 
-        draw = ImageDraw.Draw(img_base)
-        for item in config_data.get("data", []):
-               #logger.debug(f'Adding item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
-               text = f'{values[item.get("field")]}'
-               draw_text(draw, text, item)
-        for item in config_data.get("labels", []):
-               #logger.debug(f'Adding item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
-               text = f'{item.get("text")}'
-               draw_text(draw, text, item)
+            attendee_type = "attendee"
+            color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
+            background_size = next((item["background-size"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None)
+            for attendee in config_data["attendee-types"]:
+                    if ticket_title in attendee["ticket-titles"]:
+                            logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
+                            attendee_type = attendee["name"]
+                            color = str_to_tuple(attendee["color"])
 
-        if pre_order_data:
-                for item in config_data.get("pre-order-data", []):
-                        #logger.debug(f'Adding extra item {item.get("field")}, {item.get("position")}, {item.get("color")}, {item.get("font")}')
-                        text = f'{values[item.get("field")]}'
-                        draw_text(draw, text, item)
+            width, height = img_base.size
 
-        attendee_type = "attendee"
-        color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
-        background_size = next((item["background-size"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None)
-        for attendee in config_data["attendee-types"]:
-                if ticket_title in attendee["ticket-titles"]:
-                        logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
-                        attendee_type = attendee["name"]
-                        color = str_to_tuple(attendee["color"])
+            draw.line((0, height - (background_size / 2),
+                       width, height-(background_size / 2)),
+                       color,
+                       width=background_size)
+            
+            item = next((item for item in config_data["fonts"] if item.get("field") == "attendee-type"), None)
+            draw_text(draw, attendee_type, item, image_width=width)
 
-        width, height = img_base.size
+            size = config_data.get("size")
 
-        draw.line((0, height - (background_size / 2),
-                   width, height-(background_size / 2)),
-                   color,
-                   width=background_size)
-        
-        item = next((item for item in config_data["fonts"] if item.get("field") == "attendee-type"), None)
-        draw_text(draw, attendee_type, item, image_width=width)
+            # Check if width-mm and height-mm exist
+            if isinstance(size, dict) and "width-mm" in size and "height-mm" in size:
+                    out_width_px = int(config_data["size"]["width-mm"] / 10 / 2.54 * 300)
+                    out_heiht_px = int(config_data["size"]["height-mm"] / 10 / 2.54 * 300)
 
-        size = config_data.get("size")
-
-        # Check if width-mm and height-mm exist
-        if isinstance(size, dict) and "width-mm" in size and "height-mm" in size:
-                out_width_px = int(config_data["size"]["width-mm"] / 10 / 2.54 * 300)
-                out_heiht_px = int(config_data["size"]["height-mm"] / 10 / 2.54 * 300)
-
-                width_ratio = out_width_px / width
-                height_ratio = out_heiht_px / height
-                scale_factor = min(width_ratio, height_ratio)
-                dpi = img_base.info.get("dpi", (1, 1))
-                width_cm = (width / dpi[0]) * 2.54
-                height_cm = (height / dpi[1]) * 2.54
-                logger.debug(f"Original image size {width}/{height}, {width_cm}/{height_cm} cm, dpi {dpi}")
-                if width_ratio != 1 and height_ratio != 1:
-                        new_width = int(width * scale_factor)
-                        new_height = int(height * scale_factor)
-                        logger.debug(f"Resizing from {width}/{height} to {new_width}/{new_height}")
-                        img_resized = img_base.resize((new_width, new_height), Image.LANCZOS)
-                else:
-                        img_resized = img_base
-                        logger.debug("Configured image size is the same as the base image.")
-        else:
-               img_resized = img_base
-               #logger.debug("There is no size config, original base image size is used")
-        img_resized.save(f"badges/{lastname}_{firstname}_{order_number}.pdf", dpi=(300, 300))
-        logger.debug(f"Saved {lastname}, {firstname} , {index}")
+                    width_ratio = out_width_px / width
+                    height_ratio = out_heiht_px / height
+                    scale_factor = min(width_ratio, height_ratio)
+                    dpi = img_base.info.get("dpi", (1, 1))
+                    width_cm = (width / dpi[0]) * 2.54
+                    height_cm = (height / dpi[1]) * 2.54
+                    logger.debug(f"Original image size {width}/{height}, {width_cm}/{height_cm} cm, dpi {dpi}")
+                    if width_ratio != 1 and height_ratio != 1:
+                            new_width = int(width * scale_factor)
+                            new_height = int(height * scale_factor)
+                            logger.debug(f"Resizing from {width}/{height} to {new_width}/{new_height}")
+                            img_resized = img_base.resize((new_width, new_height), Image.LANCZOS)
+                    else:
+                            img_resized = img_base
+                            logger.debug("Configured image size is the same as the base image.")
+            else:
+                   img_resized = img_base
+                   #logger.debug("There is no size config, original base image size is used")
+                   
+            # Always save to the badges directory
+            badge_filename = f"badges/{lastname}_{firstname}_{order_number}.pdf"
+            img_resized.save(badge_filename, dpi=(300, 300))
+            badge_count += 1
+            logger.debug(f"Saved {lastname}, {firstname}, {index}")
+            
+        except Exception as e:
+            logger.error(f"Error processing attendee {index}: {str(e)}")
+            
+    logger.info(f"Badge generation complete. Created {badge_count} badges and {qr_count} QR codes.")
+    return badge_count
 
 def read_data_file(csv_file):
         logger = logging.getLogger(__name__)
@@ -258,7 +274,16 @@ def draw_text(draw, text, item, position=None, color=None, image_width=0):
         if not position:
                 str_position = tuple(map(str, item.get("position").split(",")))
                 if str_position[0] == "middle" and image_width > 0:
-                        text_width, text_height = draw.textsize(text, font=get_font(item.get("font"), item.get("size")))
+                        # Handle different Pillow versions for text size measurement
+                        font_obj = get_font(item.get("font"), item.get("size"))
+                        try:
+                                # For newer Pillow versions
+                                text_bbox = draw.textbbox((0, 0), text, font=font_obj)
+                                text_width = text_bbox[2] - text_bbox[0]
+                        except AttributeError:
+                                # For older Pillow versions
+                                text_width, text_height = draw.textsize(text, font=font_obj)
+                        
                         x = (image_width - text_width) // 2
                         position = str_to_tuple(f"{x}, {str_position[1]}")
                 else:

@@ -71,6 +71,7 @@ function App() {
     const file = event.target.files[0];
     if (!file) return;
 
+    console.log("File selected:", file.name, file.size, file.type);
     setFile(file);
     setLoading(true);
     setError(null);
@@ -78,16 +79,21 @@ function App() {
 
     const formData = new FormData();
     formData.append('file', file);
+    console.log("FormData created with file");
 
     try {
-      await axios.post(`${API_BASE_URL}/upload-csv`, formData, {
+      console.log("Sending POST request to:", `${API_BASE_URL}/upload-csv`);
+      const response = await axios.post(`${API_BASE_URL}/upload-csv`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log("Response received:", response.data);
       setSuccess('Badges generated successfully!');
       fetchBadges();
     } catch (err) {
+      console.error("Upload error:", err);
+      console.error("Error response:", err.response);
       setError(err.response?.data?.detail || 'Failed to upload file');
     } finally {
       setLoading(false);
@@ -151,9 +157,9 @@ function App() {
   };
 
   const handleDownloadBadge = async (attendee) => {
-    // Convert Order # to string and remove decimal places
-    const ticket_number = String(attendee['Ticket number']).split('.')[0];
-    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${ticket_number}.pdf`;
+    // Use Order number instead of Ticket number to match confbadger.py file naming
+    const order_number = String(attendee['Order number']).split('.')[0];
+    const badgeFilename = `${attendee['Last Name']}_${attendee['First Name']}_${order_number}.pdf`;
     window.open(`${API_BASE_URL}/badge/${badgeFilename}`, '_blank');
   };
 
