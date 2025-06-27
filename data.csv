@@ -1,17 +1,6 @@
-﻿Order number,Ticket number,First Name,Last Name,Email,Twitter,Company,Title,Featured,Ticket title,Ticket venue,Access code,Discount,Price,Currency,Number of tickets,Paid by (name),Paid by (email),Paid date (UTC),Checkin Date (UTC),Ticket Price Paid
-CNCFE23213608,CNCFA23236346,John,Smith,j.smith@worlduni.com,,,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Smith,j.smith@worlduni.com,2025-01-20 17:09,,45.00
-CNCFE23216342,CNCFA23239833,Eve,Moneypenny,e.moneypenny@syard.co.uk,,Scotland Yard,,,Student,In-person,,Student,20.00,EUR,1,Moneypenny,e.moneypenny@syard.co.uk,2025-02-10 19:13,,20.00
-CNCFE23213464,CNCFA23236416,Tom,Waits,tw@alice.you,,Alice Co,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Waits,tw@alice.you,2025-01-20 09:27,,45.00
-CNCFE23213960,CNCFA23238663,William,Orbit,w.orbit@orbit.my,,Orbital,,,Standard,In-person,,Standard,225.00,EUR,3,Orbit,w.orbit@orbit.my,2025-01-31 14:25,,75.00
-CNCFE23213960,CNCFA23238664,Rosaline,Franklin,rosaline.franklin@xray.org,,X-Ray Inc.,,,Student,In-person,,Student,20.00,EUR,1,Franklin,rosaline.franklin@xray.org,2025-01-31 14:25,,20.00
-CNCFE23216663,CNCFA23239348,William,Gosset,william.gosset@statsco.net,,Stats & Co.,,,Standard,In-person,,Standard,75.00,EUR,1,Gosset,william.gosset@statsco.net,2025-02-06 09:33,,75.00
-CNCFE23213613,CNCFA23236640,Florence,Nightingale,florence.Nightingale@modnurse.ai,,Modern Nursing,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Nightingale,florence.Nightingale@modnurse.ai,2025-01-20 22:58,,45.00
-CNCFE23214293,CNCFA23236136,Marie,Curie,marie.curie@radiotruth.world,,RadioTruth,,,Early Bird,In-person,,Early Bird,45.00,EUR,1,Curie,marie.curie@radiotruth.world,2025-01-23 09:48,,45.00
-CNCFE23214130,CNCFA23236026,Rachel,Carson,r.carson@bioseas.ocean,,BioSeas,,,Early Bird,In-person,,Early Bird,135.00,EUR,3,Carson,r.carson@bioseas.ocean,2025-01-22 18:09,,45.00
-CNCFE23220349,CNCFA23242633,John,Snow,jshow@docsinc.health,,Docs Inc.,,,Standard,In-person,,Standard,75.00,EUR,1,Snow,jshow@docsinc.health,2025-02-24 12:25,,75.00
-CNCFE23216308,CNCFA23238936,Alan,Turing,alan.turing@turingml.ai,,TuringML,,,Standard,In-person,,Standard,375.00,EUR,5,Turing,alan.turing@turingml.ai,2025-02-03 13:35,,75.00
-CNCFE23213966,CNCFA23238633,Johann,Gauss,j.gauss@binomial.math,,Binomial LLC,,,Standard,In-person,,Standard,450.00,EUR,6,Gauss,j.gauss@binomial.math,2025-01-31 14:04,,75.00
-CNCFE23224212,CNCFA23243969,Albert,Einstein,albert.einstein@relateive.corp,,Relative,,,Late,In-person,,Late,100.00,EUR,1,Einstein,albert.einstein@relateive.corp,2025-03-11 16:23,,100.00
-CNCFE23216433,CNCFA23239081,John,Nash,jnash@gamenot.math,,GameNot,,,Standard,In-person,,Standard,75.00,EUR,1,Nash,jnash@gamenot.math,2025-02-04 09:50,,75.00
-CNCFE23216308,CNCFA23238936,Stephen,Hawking,stephen.hawking@cosmocorp.space,,Cosmo,,,Standard,In-person,,Standard,375.00,EUR,5,Hawking,stephen.hawking@cosmocorp.space,2025-02-03 13:35,,75.00
-CNCFE23224964,CNCFA23246223,Enrico,Fermi,e.fermi@atom.nucleus,,Nucleus,,,Organizer,In-person,KCD2025ORGANIZER,Organizer,0.00,EUR,1,Fermi,e.fermi@atom.nucleus,2025-03-14 16:19,,0.00
+Order number,Order Date,First Name,Last Name,Email,Quantity,Price Tier,Ticket title,Ticket number,Group,Ticket Type,Currency,Total Paid,Fees Paid,Eventbrite Fees,Eventbrite Payment Processing,Attendee Status,Home Address 1,Home Address 2,Home City,Home State,Home Zip,Home Country,Company,Title,Twitter,Featured,Ticket venue,Access code,Discount,Price,Currency,Number of tickets,Paid by (name),Paid by (email),Paid date (UTC),Checkin Date (UTC),Ticket Price Paid
+12587525073,2025-06-03 22:48:51+02:00,Organizer,Kerker,marcel.kerker@hcs-company.com,1,Organizers,Organizers,20605159973,,Free Order,EUR,0.00,0.00,0.00,0.00,Attending,,,,,,,HCS Company,Event Manager,,
+12587567783,2025-06-03 22:54:49+02:00,Volunteer,Karakulak,sevikarakulak@gmail.com,1,Volunteer,Volunteer,20605230373,,Free Order,EUR,0.00,0.00,0.00,0.00,Attending,,,,,,,Booking.com,Platform Engineering Manager,,
+12590244103,2025-06-04 08:30:02+02:00,Sponsors,Rizzo,william.rizzo@gmail.com,1,Sponsors,Sponsors,20609584083,,Free Order,EUR,0.00,0.00,0.00,0.00,Attending,,,,,,,Miranits,Strategy Lead,https://www.linkedin.com/in/william-rizzo/,wrkode
+12590564373,2025-06-04 09:54:56+02:00,Attendee,Giardini,andrea@crossover-engineering.com,1,nothing,nothing,20610052223,,Free Order,EUR,0.00,0.00,0.00,0.00,Attending,,,,,,,Amsterdam.dev,Cloud Native Consultant / Trainer,https://www.linkedin.com/in/giardiniandrea/,
+12590575873,2025-06-04 09:58:03+02:00,Speakers,Li,accounts@lianmakesthings.dev,1,Speakers,Speakers,20610068943,,Free Order,EUR,0.00,0.00,0.00,0.00,Attending,,,,,,,lianmakesthings,Cloud Native Human,,

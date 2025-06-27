@@ -1,7 +1,7 @@
 # Conference Badge Generator
 
 A web application for generating and managing conference badges from CSV data. The application allows you to upload
- attendee data, generate badges with QR codes, and search through attendees.
+ attendee data, generate badges with QR codes, and search through attendees. 
 
 ## Features
 

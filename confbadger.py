@@ -132,6 +132,28 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
             ticket_price_paid       = values["Ticket Price Paid"]
 
             ImageFile.LOAD_TRUNCATED_IMAGES = True
+ 
+            attendee_type = "attendee"
+            color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
+            background_size = next((item["background-size"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None)
+            for attendee in config_data["attendee-types"]:
+                    if ticket_title in attendee["ticket-titles"]:
+                            logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
+                            attendee_type = attendee["name"]
+                            color = str_to_tuple(attendee["color"])
+            
+            template = "5.png"    
+            print(attendee_type)
+            if attendee_type == "Volunteer":
+                template = "1.png"
+            if attendee_type == "Speaker":
+                template = "2.png"
+            if attendee_type == "Organizer":
+                template = "3.png"
+            if attendee_type == "Sponsor":
+                template = "4.png"
+
+
             img_base = Image.open(template).convert("RGB")
             logger.debug(f"Handling {lastname}, {firstname} , {index}")
             #logger.debug(f'QR Code status: {config_data["qr-code"]["status"]}')
@@ -144,9 +166,8 @@ def createBadge(template = "KCDAMS2023_Badge_Template.png",
                     data = f'''BEGIN:VCARD
 N:{lastname};{firstname};
 FN:{lastname}+{firstname}
-TITLE:{title}
 EMAIL;WORK;INTERNET:{email}
-ORG:{company}
+ORG:CNDNL2025
 VERSION:3.0
 END:VCARD'''
                     scale="4"
@@ -181,14 +202,7 @@ END:VCARD'''
                             text = f'{values[item.get("field")]}'
                             draw_text(draw, text, item)
 
-            attendee_type = "attendee"
-            color = str_to_tuple(next((item["color"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None))
-            background_size = next((item["background-size"] for item in config_data["attendee-types"] if item.get("name") == "Attendee"), None)
-            for attendee in config_data["attendee-types"]:
-                    if ticket_title in attendee["ticket-titles"]:
-                            logger.debug(f"name: {firstname} {lastname}, ticket type: {attendee['name']}")
-                            attendee_type = attendee["name"]
-                            color = str_to_tuple(attendee["color"])
+
 
             width, height = img_base.size
 
